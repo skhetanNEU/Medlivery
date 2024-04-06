@@ -49,7 +49,7 @@ class RegisterUserViewController: UIViewController {
         var email:String = ""
         if let emailText = registerScreen.textFieldEmail.text{
             if !emailText.isEmpty{
-                if (validEmail(emailText)){
+                if (Utilities.validEmail(emailText)){
                     // Check if email contains any uppercase letters
                     if emailText != emailText.lowercased() {
                         showInvalidEmailAlert()
@@ -59,6 +59,22 @@ class RegisterUserViewController: UIViewController {
                 }
                 else{
                     showInvalidEmailAlert()
+                }
+            }else{
+                showEmptyFieldAlert()
+                return
+            }
+        }
+        
+        var phoneNumber:String = ""
+        if let phoneNumberText = registerScreen.textFieldPhoneNumber.text{
+            if !phoneNumberText.isEmpty{
+                if(Utilities.validPhoneNumber(phoneNumberText)){
+                    phoneNumber = phoneNumberText
+                }
+                else{
+                    showInvalidPhoneNumberAlert()
+                    return
                 }
             }else{
                 showEmptyFieldAlert()
@@ -94,21 +110,22 @@ class RegisterUserViewController: UIViewController {
             }
         }
         
-        
         print("registing")
         print(name)
         print(email)
         print(password)
+        print(phoneNumber)
         
-        register(name:name, email:email, password: password)
+        register(name:name, email:email, phoneNumber: phoneNumber, password: password)
     }
     
-    func register(name:String, email:String, password:String){
+    func register(name:String, email:String, phoneNumber:String, password:String){
         showActivityIndicator()
         Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
             if error == nil{
                 //MARK: the user creation is successful...
                 self.setNameOfTheUserInFirebaseAuth(name: name)
+                self.setPhoneNumberOfTheUserInFirebaseAuth(phoneNumber: phoneNumber)
             }else{
                 //MARK: there is a error creating the user...
                 print(error!)
@@ -126,7 +143,7 @@ class RegisterUserViewController: UIViewController {
             if error == nil{
                 self.hideActivityIndicator()
                 //MARK: the profile update is successful...
-                self.goToChatScreen()
+                self.goToOrderScreen()
             }else{
                 //MARK: there was an error updating the profile...
                 print("Error occured: \(String(describing: error))")
@@ -134,9 +151,24 @@ class RegisterUserViewController: UIViewController {
         })
     }
     
-    func goToChatScreen(){
-        let chatScreenViewController = ViewController()
-        navigationController?.setViewControllers([chatScreenViewController], animated: true)
+    func setPhoneNumberOfTheUserInFirebaseAuth(phoneNumber: String){
+//        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+//        changeRequest?.phoneNumber = phoneNumber
+//        changeRequest?.commitChanges(completion: {(error) in
+//            if error == nil{
+//                self.hideActivityIndicator()
+//                //MARK: the profile update is successful...
+//                self.goToOrderScreen()
+//            }else{
+//                //MARK: there was an error updating the profile...
+//                print("Error occured: \(String(describing: error))")
+//            }
+//        })
+    }
+    
+    func goToOrderScreen(){
+        let orderScreenViewController = ViewController()
+        navigationController?.setViewControllers([orderScreenViewController], animated: true)
     }
     
     func showEmptyFieldAlert(){
@@ -168,17 +200,19 @@ class RegisterUserViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
-    func showUserExistsAlert(){
-        let alert = UIAlertController(title: "Error!", message: "User already exists", preferredStyle: .alert)
+    func showInvalidPhoneNumberAlert(){
+        let alert = UIAlertController(title: "Error!", message: "Phone number is invalid!", preferredStyle: .alert)
+        
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         
         self.present(alert, animated: true)
     }
     
-    func validEmail(_ email: String) ->Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
+    func showUserExistsAlert(){
+        let alert = UIAlertController(title: "Error!", message: "User already exists", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        
+        self.present(alert, animated: true)
     }
 }
 

@@ -13,16 +13,17 @@ class LoginViewController: UIViewController {
     let loginScreen = LoginScreenView()
     let childProgressView = ProgressSpinnerViewController()
     
-    override func loadView() {
-        view = loginScreen
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
+        print("In login")
         super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print("Creating login")
+
+        view = loginScreen
         
         loginScreen.buttonLogin.addTarget(self, action: #selector(onButtonLoginTapped), for: .touchUpInside)
         loginScreen.buttonRegister.addTarget(self, action: #selector(onButtonRegisterTapped), for: .touchUpInside)
@@ -32,7 +33,7 @@ class LoginViewController: UIViewController {
         var email:String = ""
         if let emailText = loginScreen.textFieldEmail.text{
             if !emailText.isEmpty{
-                if (validEmail(emailText)){
+                if (Utilities.validEmail(emailText)){
                     email = emailText
                 }
                 else{
@@ -93,12 +94,6 @@ class LoginViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         
         self.present(alert, animated: true)
-    }
-    
-    func validEmail(_ email: String) ->Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPred = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailPred.evaluate(with: email)
     }
     
     @objc func onButtonRegisterTapped(){

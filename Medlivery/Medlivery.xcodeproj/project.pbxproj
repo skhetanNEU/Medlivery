@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F56DFFC2BC0D4050083FBB6 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56DFFB2BC0D4050083FBB6 /* Utilities.swift */; };
 		3F7F85DE2BBDEB2200C67E00 /* LoginScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F85DD2BBDEB2100C67E00 /* LoginScreenView.swift */; };
 		3F7F85E02BBDEB4200C67E00 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F85DF2BBDEB4200C67E00 /* LoginViewController.swift */; };
 		3F7F85E22BBDEB6700C67E00 /* RegisterUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F85E12BBDEB6700C67E00 /* RegisterUserViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3F56DFFB2BC0D4050083FBB6 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		3F7F85DD2BBDEB2100C67E00 /* LoginScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreenView.swift; sourceTree = "<group>"; };
 		3F7F85DF2BBDEB4200C67E00 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3F7F85E12BBDEB6700C67E00 /* RegisterUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterUserViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				3F7F85F82BBDEF0300C67E00 /* LoginScreen */,
 				3F7F85F92BBDEF0D00C67E00 /* RegisterScreen */,
 				3F7F85FA2BBDEF1800C67E00 /* ProgressSpinner */,
+				3F56DFFB2BC0D4050083FBB6 /* Utilities.swift */,
 			);
 			path = Medlivery;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				3F7F85E02BBDEB4200C67E00 /* LoginViewController.swift in Sources */,
 				3F7F85E22BBDEB6700C67E00 /* RegisterUserViewController.swift in Sources */,
 				3F7F85F72BBDEED400C67E00 /* ProgressSpinnerDelegate.swift in Sources */,
+				3F56DFFC2BC0D4050083FBB6 /* Utilities.swift in Sources */,
 				3F9A1F252BAF5AD200DBE7A7 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
