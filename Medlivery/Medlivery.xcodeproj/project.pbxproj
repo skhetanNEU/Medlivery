@@ -35,10 +35,16 @@
 		3F7F85F72BBDEED400C67E00 /* ProgressSpinnerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F7F85F62BBDEED400C67E00 /* ProgressSpinnerDelegate.swift */; };
 		3F9A1F232BAF5AD200DBE7A7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A1F222BAF5AD200DBE7A7 /* AppDelegate.swift */; };
 		3F9A1F252BAF5AD200DBE7A7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A1F242BAF5AD200DBE7A7 /* SceneDelegate.swift */; };
-		3F9A1F272BAF5AD200DBE7A7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9A1F262BAF5AD200DBE7A7 /* ViewController.swift */; };
 		3F9A1F2A2BAF5AD200DBE7A7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A1F282BAF5AD200DBE7A7 /* Main.storyboard */; };
 		3F9A1F2C2BAF5AD400DBE7A7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A1F2B2BAF5AD400DBE7A7 /* Assets.xcassets */; };
 		3F9A1F2F2BAF5AD400DBE7A7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3F9A1F2D2BAF5AD400DBE7A7 /* LaunchScreen.storyboard */; };
+		3F9F7F362BC194A700F357BE /* CreateOrderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F342BC194A700F357BE /* CreateOrderController.swift */; };
+		3F9F7F372BC194A700F357BE /* CreateOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F352BC194A700F357BE /* CreateOrderView.swift */; };
+		3F9F7F3C2BC194BA00F357BE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F392BC194BA00F357BE /* ViewController.swift */; };
+		3F9F7F3D2BC194BA00F357BE /* OrdersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F3A2BC194BA00F357BE /* OrdersTableViewCell.swift */; };
+		3F9F7F3E2BC194BA00F357BE /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F3B2BC194BA00F357BE /* OrdersListView.swift */; };
+		3F9F7F422BC194D800F357BE /* OrderDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F402BC194D800F357BE /* OrderDetailsController.swift */; };
+		3F9F7F432BC194D800F357BE /* OrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F412BC194D800F357BE /* OrderDetailsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,11 +72,17 @@
 		3F9A1F1F2BAF5AD200DBE7A7 /* Medlivery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Medlivery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9A1F222BAF5AD200DBE7A7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F9A1F242BAF5AD200DBE7A7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		3F9A1F262BAF5AD200DBE7A7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3F9A1F292BAF5AD200DBE7A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3F9A1F2B2BAF5AD400DBE7A7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F9A1F2E2BAF5AD400DBE7A7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3F9A1F302BAF5AD400DBE7A7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F9F7F342BC194A700F357BE /* CreateOrderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOrderController.swift; sourceTree = "<group>"; };
+		3F9F7F352BC194A700F357BE /* CreateOrderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateOrderView.swift; sourceTree = "<group>"; };
+		3F9F7F392BC194BA00F357BE /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3F9F7F3A2BC194BA00F357BE /* OrdersTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersTableViewCell.swift; sourceTree = "<group>"; };
+		3F9F7F3B2BC194BA00F357BE /* OrdersListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
+		3F9F7F402BC194D800F357BE /* OrderDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsController.swift; sourceTree = "<group>"; };
+		3F9F7F412BC194D800F357BE /* OrderDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,12 +167,14 @@
 			children = (
 				3F9A1F222BAF5AD200DBE7A7 /* AppDelegate.swift */,
 				3F9A1F242BAF5AD200DBE7A7 /* SceneDelegate.swift */,
-				3F9A1F262BAF5AD200DBE7A7 /* ViewController.swift */,
 				3F9A1F282BAF5AD200DBE7A7 /* Main.storyboard */,
 				3F9A1F2B2BAF5AD400DBE7A7 /* Assets.xcassets */,
 				3F9A1F2D2BAF5AD400DBE7A7 /* LaunchScreen.storyboard */,
 				3F9A1F302BAF5AD400DBE7A7 /* Info.plist */,
 				3F7F85E52BBDED0600C67E00 /* GoogleService-Info.plist */,
+				3F9F7F3F2BC194D800F357BE /* ViewOrder */,
+				3F9F7F382BC194BA00F357BE /* Orders */,
+				3F9F7F332BC194A700F357BE /* CreateOrder */,
 				3F7F85F82BBDEF0300C67E00 /* LoginScreen */,
 				3F7F85F92BBDEF0D00C67E00 /* RegisterScreen */,
 				3F7F85FA2BBDEF1800C67E00 /* ProgressSpinner */,
@@ -170,6 +184,35 @@
 				21849B632BC0EE2000509724 /* NotificationNames.swift */,
 			);
 			path = Medlivery;
+			sourceTree = "<group>";
+		};
+		3F9F7F332BC194A700F357BE /* CreateOrder */ = {
+			isa = PBXGroup;
+			children = (
+				3F9F7F342BC194A700F357BE /* CreateOrderController.swift */,
+				3F9F7F352BC194A700F357BE /* CreateOrderView.swift */,
+			);
+			path = CreateOrder;
+			sourceTree = "<group>";
+		};
+		3F9F7F382BC194BA00F357BE /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				3F9F7F392BC194BA00F357BE /* ViewController.swift */,
+				3F9F7F3A2BC194BA00F357BE /* OrdersTableViewCell.swift */,
+				3F9F7F3B2BC194BA00F357BE /* OrdersListView.swift */,
+			);
+			name = Orders;
+			path = Medlivery/Orders;
+			sourceTree = SOURCE_ROOT;
+		};
+		3F9F7F3F2BC194D800F357BE /* ViewOrder */ = {
+			isa = PBXGroup;
+			children = (
+				3F9F7F402BC194D800F357BE /* OrderDetailsController.swift */,
+				3F9F7F412BC194D800F357BE /* OrderDetailsView.swift */,
+			);
+			path = ViewOrder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,17 +297,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F9F7F3C2BC194BA00F357BE /* ViewController.swift in Sources */,
 				21849B552BC0EC2700509724 /* MapViewController.swift in Sources */,
+				3F9F7F3D2BC194BA00F357BE /* OrdersTableViewCell.swift in Sources */,
 				3F7F85DE2BBDEB2200C67E00 /* LoginScreenView.swift in Sources */,
 				21849B5E2BC0EDB500509724 /* LocationManager.swift in Sources */,
 				3F7F85E42BBDEB7600C67E00 /* RegisterUserView.swift in Sources */,
 				3F7F85F52BBDEEA500C67E00 /* ProgressSpinnerViewController.swift in Sources */,
-				3F9A1F272BAF5AD200DBE7A7 /* ViewController.swift in Sources */,
 				3F9A1F232BAF5AD200DBE7A7 /* AppDelegate.swift in Sources */,
 				21849B702BC0EFE000509724 /* SearchTableViewManager.swift in Sources */,
 				21849B662BC0EE4300509724 /* LoadPlaces.swift in Sources */,
 				21849B5C2BC0ED5A00509724 /* MapView.swift in Sources */,
+				3F9F7F432BC194D800F357BE /* OrderDetailsView.swift in Sources */,
 				21849B6A2BC0EF6200509724 /* SearchTableViewCell.swift in Sources */,
+				3F9F7F362BC194A700F357BE /* CreateOrderController.swift in Sources */,
 				3F7F85E02BBDEB4200C67E00 /* LoginViewController.swift in Sources */,
 				21849B6C2BC0EF8D00509724 /* SearchBottomSheet.swift in Sources */,
 				21849B6E2BC0EFB700509724 /* SearchViewController.swift in Sources */,
@@ -273,9 +319,12 @@
 				21849B622BC0EE0700509724 /* Configs.swift in Sources */,
 				21849B642BC0EE2000509724 /* NotificationNames.swift in Sources */,
 				21849B582BC0EC8600509724 /* CustomPresentationController.swift in Sources */,
+				3F9F7F422BC194D800F357BE /* OrderDetailsController.swift in Sources */,
+				3F9F7F372BC194A700F357BE /* CreateOrderView.swift in Sources */,
 				3F7F85F72BBDEED400C67E00 /* ProgressSpinnerDelegate.swift in Sources */,
 				3F56DFFC2BC0D4050083FBB6 /* Utilities.swift in Sources */,
 				3F9A1F252BAF5AD200DBE7A7 /* SceneDelegate.swift in Sources */,
+				3F9F7F3E2BC194BA00F357BE /* OrdersListView.swift in Sources */,
 				21849B682BC0EE7900509724 /* Place.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

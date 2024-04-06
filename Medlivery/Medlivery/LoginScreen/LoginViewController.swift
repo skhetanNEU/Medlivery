@@ -65,8 +65,8 @@ class LoginViewController: UIViewController {
             if error == nil{
                 //MARK: user authenticated...
                 self.hideActivityIndicator()
-                print("Going to chat screen")
-                self.goToChatScreen()
+                print("Going to orders screen")
+                self.goToOrdersScreen()
             }else{
                 self.showInvalidCredentialsAlert()
             }
@@ -101,9 +101,9 @@ class LoginViewController: UIViewController {
         navigationController?.pushViewController(registerUserViewController, animated: true)
     }
     
-    func goToChatScreen(){
-        let chatScreenViewController = ViewController()
-        navigationController?.setViewControllers([chatScreenViewController], animated: true)
+    func goToOrdersScreen(){
+        let orderScreenViewController = ViewController()
+        navigationController?.setViewControllers([orderScreenViewController], animated: true)
     }
 }
 

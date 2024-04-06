@@ -130,7 +130,6 @@ class RegisterUserViewController: UIViewController {
                 //MARK: there is a error creating the user...
                 print(error!)
                 self.showUserExistsAlert()
-                self.hideActivityIndicator()
             }
         })
     }
@@ -141,9 +140,8 @@ class RegisterUserViewController: UIViewController {
         changeRequest?.displayName = name
         changeRequest?.commitChanges(completion: {(error) in
             if error == nil{
-                self.hideActivityIndicator()
                 //MARK: the profile update is successful...
-                self.goToOrderScreen()
+                self.goToOrdersScreen()
             }else{
                 //MARK: there was an error updating the profile...
                 print("Error occured: \(String(describing: error))")
@@ -166,7 +164,7 @@ class RegisterUserViewController: UIViewController {
 //        })
     }
     
-    func goToOrderScreen(){
+    func goToOrdersScreen(){
         let orderScreenViewController = ViewController()
         navigationController?.setViewControllers([orderScreenViewController], animated: true)
     }
