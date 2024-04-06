@@ -43,6 +43,8 @@ class LoginScreenView: UIView {
         textFieldEmail = UITextField()
         textFieldEmail.placeholder = "Email"
         textFieldEmail.borderStyle = .roundedRect
+        textFieldEmail.autocapitalizationType = .none // Disable autocapitalization
+        textFieldEmail.autocorrectionType = .no // Disable autocorrection
         textFieldEmail.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(textFieldEmail)
     }

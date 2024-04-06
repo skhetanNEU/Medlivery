@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
 
 class RegisterUserViewController: UIViewController {
 
@@ -82,6 +83,26 @@ class RegisterUserViewController: UIViewController {
             }
         }
         
+        var address:String = ""
+        if let addressText = registerScreen.textFieldAddress.text{
+            if !addressText.isEmpty{
+                address = addressText
+            }else{
+                showEmptyFieldAlert()
+                return
+            }
+        }
+        
+        var city:String = ""
+        if let cityText = registerScreen.textFieldCity.text{
+            if !cityText.isEmpty{
+                city = cityText
+            }else{
+                showEmptyFieldAlert()
+                return
+            }
+        }
+        
         var password:String = ""
         if let passwordText = registerScreen.textFieldPassword.text,
            let passwordRepeatText = registerScreen.textFieldPasswordRepeat.text{
@@ -110,22 +131,15 @@ class RegisterUserViewController: UIViewController {
             }
         }
         
-        print("registing")
-        print(name)
-        print(email)
-        print(password)
-        print(phoneNumber)
-        
-        register(name:name, email:email, phoneNumber: phoneNumber, password: password)
+        register(name:name, email:email, phoneNumber: phoneNumber, address: address, city: city, password: password)
     }
     
-    func register(name:String, email:String, phoneNumber:String, password:String){
+    func register(name:String, email:String, phoneNumber:String, address:String, city:String, password:String){
         showActivityIndicator()
         Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
             if error == nil{
                 //MARK: the user creation is successful...
-                self.setNameOfTheUserInFirebaseAuth(name: name)
-                self.setPhoneNumberOfTheUserInFirebaseAuth(phoneNumber: phoneNumber)
+                self.addProfileInFirebase(name: name, phone:phoneNumber, address:address, city:city)
             }else{
                 //MARK: there is a error creating the user...
                 print(error!)
@@ -135,33 +149,40 @@ class RegisterUserViewController: UIViewController {
     }
     
     //MARK: We set the name of the user after we create the account...
-    func setNameOfTheUserInFirebaseAuth(name: String){
+    func addProfileInFirebase(name: String, phone:String, address:String, city:String){
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = name
         changeRequest?.commitChanges(completion: {(error) in
             if error == nil{
                 //MARK: the profile update is successful...
-                self.goToOrdersScreen()
+                self.addProfileDetails(name: name, phone: phone, address: address, city: city)
             }else{
                 //MARK: there was an error updating the profile...
+                self.hideActivityIndicator()
                 print("Error occured: \(String(describing: error))")
             }
         })
     }
     
-    func setPhoneNumberOfTheUserInFirebaseAuth(phoneNumber: String){
-//        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-//        changeRequest?.phoneNumber = phoneNumber
-//        changeRequest?.commitChanges(completion: {(error) in
-//            if error == nil{
-//                self.hideActivityIndicator()
-//                //MARK: the profile update is successful...
-//                self.goToOrderScreen()
-//            }else{
-//                //MARK: there was an error updating the profile...
-//                print("Error occured: \(String(describing: error))")
-//            }
-//        })
+    func addProfileDetails(name: String, phone:String, address:String, city:String){
+        let db = Firestore.firestore()
+
+        let profileData: [String: Any] = [
+            "name": name,
+            "phone": phone,
+            "address": address,
+            "city": city
+        ]
+
+        db.collection("users").addDocument(data: profileData) { error in
+            if let error = error {
+                print("Error adding message: \(error)")
+            } else {
+                print("Profile added successfully")
+            }
+        }
+        
+        self.goToOrdersScreen()
     }
     
     func goToOrdersScreen(){

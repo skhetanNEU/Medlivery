@@ -68,6 +68,7 @@ class LoginViewController: UIViewController {
                 print("Going to orders screen")
                 self.goToOrdersScreen()
             }else{
+                self.hideActivityIndicator()
                 self.showInvalidCredentialsAlert()
             }
         })
