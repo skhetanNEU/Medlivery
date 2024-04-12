@@ -16,6 +16,7 @@ class OrdersTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.backgroundColor = Utilities.beigeColor
         setupWrapperCellView()
         setupLabelName()
         setupLabelDate()
@@ -29,10 +30,13 @@ class OrdersTableViewCell: UITableViewCell {
     
     func setupWrapperCellView(){
         wrapperCellView = UITableViewCell()
+        wrapperCellView.layer.borderColor = UIColor.gray.cgColor
+        wrapperCellView.layer.borderWidth = 2.0
+//        wrapperCellView.layer.cornerRadius = 130.0
         
         //working with the shadows and colors...
-        wrapperCellView.backgroundColor = .white
-        wrapperCellView.layer.cornerRadius = 4.0
+        wrapperCellView.backgroundColor = Utilities.beigeColor
+        wrapperCellView.layer.cornerRadius = 12.0
         wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
         wrapperCellView.layer.shadowOffset = .zero
         wrapperCellView.layer.shadowRadius = 2.0
@@ -51,7 +55,7 @@ class OrdersTableViewCell: UITableViewCell {
     
     func setupLabelDate(){
         labelDate = UILabel()
-        labelDate.font = UIFont.boldSystemFont(ofSize: 16)
+//        labelDate.font = UIFont.boldSystemFont(ofSize: 8)
         labelDate.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(labelDate)
     }
@@ -68,7 +72,7 @@ class OrdersTableViewCell: UITableViewCell {
     
     func initConstraints(){
         NSLayoutConstraint.activate([
-            wrapperCellView.topAnchor.constraint(equalTo: self.topAnchor,constant: 4),
+            wrapperCellView.topAnchor.constraint(equalTo: self.topAnchor,constant: 8),
             wrapperCellView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 10),
             wrapperCellView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10),
             wrapperCellView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -4),
@@ -84,7 +88,7 @@ class OrdersTableViewCell: UITableViewCell {
             labelDate.widthAnchor.constraint(lessThanOrEqualTo: labelName.widthAnchor),
             
 
-            wrapperCellView.heightAnchor.constraint(equalToConstant: 50)
+            wrapperCellView.heightAnchor.constraint(equalToConstant: 60)
             
         ])
         

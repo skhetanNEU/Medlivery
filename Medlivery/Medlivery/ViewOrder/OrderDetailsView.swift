@@ -10,32 +10,34 @@ import UIKit
 class OrderDetailsView: UIView {
 //    var imageContact: UIImageView!
     var labelName: UILabel!
-    var labelAge: UILabel!
+    var labelEmail: UILabel!
+    var labelPhone: UILabel!
+    var labelStoreAddressTitle: UILabel!
+//    var location: UILabel!
+    var storeLocation: UILabel!
+    var dateOfOrder: UILabel!
     var labelAddressTitle: UILabel!
     var labelAddress: UILabel!
     var labelCityState: UILabel!
     var labelZip: UILabel!
-    var labelPhone: UILabel!
-    
-    var labelEmail: UILabel!
-
-    var buttonChat:UIButton!
-
-    
-    
+    var imagePrescription: UIImageView!
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Utilities.beigeColor
         
-//        setupImageContact()
         setupLabelName()
-        setupLabelAge()
+        setupLabelEmail()
+        setupLabelPhone()
+        setupLabelStoreAddressTitle()
+        setupStoreLocation()
+        setupDateOfOrder()
         setupLabelAddressTitle()
         setupLabelAddress()
         setupLabelCityState()
         setupLabelZip()
-        setupLabelPhone()
-        setupLabelEmail()
+        setupImagePrescription()
+        
         initConstraints()
     }
     
@@ -43,17 +45,7 @@ class OrderDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-//    //MARK: initializing the UI elements...
-//    func setupImageContact(){
-//        imageContact = UIImageView()
-//        imageContact.image = UIImage(systemName: "photo")
-//        imageContact.contentMode = .scaleToFill
-//        imageContact.clipsToBounds = true
-//        imageContact.layer.cornerRadius = 10
-//        imageContact.translatesAutoresizingMaskIntoConstraints = false
-//        self.addSubview(imageContact)
-//    }
-    
+    //MARK: initializing the UI elements...
     func setupLabelName(){
         labelName = UILabel()
         labelName.textAlignment = .left
@@ -61,15 +53,6 @@ class OrderDetailsView: UIView {
         labelName.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         labelName.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(labelName)
-    }
-    
-    func setupLabelAge(){
-        labelAge = UILabel()
-        labelAge.textAlignment = .left
-        labelAge.text = "35 years"
-//        labelAge.font = UIFont.systemFont(ofSize: 24, weight: .bold)
-        labelAge.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelAge)
     }
     
     func setupLabelEmail(){
@@ -89,14 +72,43 @@ class OrderDetailsView: UIView {
         self.addSubview(labelPhone)
     }
     
+    func setupLabelStoreAddressTitle(){
+        labelStoreAddressTitle = UILabel()
+        labelStoreAddressTitle.textAlignment = .left
+        labelStoreAddressTitle.text = "Store Address:"
+        labelStoreAddressTitle.font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        labelStoreAddressTitle.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(labelStoreAddressTitle)
+    }
+        
+    func setupStoreLocation(){
+        storeLocation = UILabel()
+        storeLocation.textAlignment = .left
+        
+        storeLocation.text = "CVS, Allston"
+        storeLocation.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(storeLocation)
+    }
+    
+    func setupDateOfOrder(){
+        dateOfOrder = UILabel()
+        dateOfOrder.textAlignment = .left
+        
+        dateOfOrder.text = "05/22/2024 13:22"
+        dateOfOrder.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(dateOfOrder)
+    }
+    
+    
     func setupLabelAddressTitle(){
         labelAddressTitle = UILabel()
         labelAddressTitle.textAlignment = .left
-        labelAddressTitle.text = "Address:"
-        labelAddressTitle.font = UIFont.systemFont(ofSize: 24, weight: .bold)
+        labelAddressTitle.text = "Delivery Address:"
+        labelAddressTitle.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         labelAddressTitle.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(labelAddressTitle)
     }
+    
     
     func setupLabelAddress(){
         labelAddress = UILabel()
@@ -123,25 +135,42 @@ class OrderDetailsView: UIView {
         self.addSubview(labelZip)
     }
     
+    func setupImagePrescription(){
+        imagePrescription = UIImageView()
+        imagePrescription.image = UIImage(systemName: "photo")
+        imagePrescription.contentMode = .scaleToFill
+        imagePrescription.clipsToBounds = true
+        imagePrescription.layer.cornerRadius = 10
+        imagePrescription.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(imagePrescription)
+    }
+    
     //MARK: initializing constraints...
     func initConstraints(){
         NSLayoutConstraint.activate([
             
-//            imageContact.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 24),
-//            imageContact.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-//            imageContact.heightAnchor.constraint(equalToConstant: 100),
-//            imageContact.widthAnchor.constraint(equalToConstant: 100),
-            
             labelName.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 24),
             labelName.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
             
-            labelAge.topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 24),
-            labelAge.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            labelEmail.topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 12),
+            labelEmail.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
             
-            labelAddressTitle.topAnchor.constraint(equalTo: labelAge.bottomAnchor, constant: 16),
+            labelPhone.topAnchor.constraint(equalTo: labelEmail.bottomAnchor, constant: 4),
+            labelPhone.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            
+            labelStoreAddressTitle.topAnchor.constraint(equalTo: labelPhone.bottomAnchor, constant: 16),
+            labelStoreAddressTitle.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            
+            storeLocation.topAnchor.constraint(equalTo: labelStoreAddressTitle.bottomAnchor, constant: 12),
+            storeLocation.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            
+            dateOfOrder.topAnchor.constraint(equalTo: storeLocation.bottomAnchor, constant: 4),
+            dateOfOrder.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            
+            labelAddressTitle.topAnchor.constraint(equalTo: dateOfOrder.bottomAnchor, constant: 16),
             labelAddressTitle.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
             
-            labelAddress.topAnchor.constraint(equalTo: labelAddressTitle.bottomAnchor, constant: 8),
+            labelAddress.topAnchor.constraint(equalTo: labelAddressTitle.bottomAnchor, constant: 12),
             labelAddress.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
             
             labelCityState.topAnchor.constraint(equalTo: labelAddress.bottomAnchor, constant: 4),
@@ -150,11 +179,11 @@ class OrderDetailsView: UIView {
             labelZip.topAnchor.constraint(equalTo: labelCityState.bottomAnchor, constant: 4),
             labelZip.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
             
-            labelPhone.topAnchor.constraint(equalTo: labelZip.bottomAnchor, constant: 8),
-            labelPhone.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
-            
-            labelEmail.topAnchor.constraint(equalTo: labelPhone.bottomAnchor, constant: 16),
-            labelEmail.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            imagePrescription.topAnchor.constraint(equalTo: labelZip.bottomAnchor, constant: 16),
+            imagePrescription.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            imagePrescription.heightAnchor.constraint(equalToConstant: 400),
+            imagePrescription.widthAnchor.constraint(equalToConstant: 300),
+                        
 
         ])
     }

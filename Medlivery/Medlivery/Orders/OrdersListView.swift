@@ -10,47 +10,70 @@ import UIKit
 class OrdersListView: UIView {
 
     //MARK: tableView for contacts...
-    var tableViewContacts: UITableView!
+    var tableViewOrders: UITableView!
     var buttonAdd:UIButton!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Utilities.beigeColor
         
-        setupTableViewContacts()
+        setupTableViewOrders()
         setupButtonAdd()
         
         initConstraints()
     }
     
     //MARK: the table view to show the list of contacts...
-    func setupTableViewContacts(){
-        tableViewContacts = UITableView()
-        tableViewContacts.register(OrdersTableViewCell.self, forCellReuseIdentifier: "orders")
-        tableViewContacts.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(tableViewContacts)
+    func setupTableViewOrders(){
+        tableViewOrders = UITableView()
+        //tableViewOrders.sectionIndexBackgroundColor = Utilities.beigeColor
+        tableViewOrders.backgroundColor = Utilities.beigeColor
+//        tableViewOrders.layer.shadowColor = Utilities.beigeColor
+        tableViewOrders.backgroundView = nil
+        tableViewOrders.register(OrdersTableViewCell.self, forCellReuseIdentifier: "orders")
+        tableViewOrders.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(tableViewOrders)
     }
     
     func setupButtonAdd(){
+//        buttonAdd = UIButton(type: .system)
+//        buttonAdd.titleLabel?.font = .boldSystemFont(ofSize: 16)
+//        buttonAdd.setTitle("Create New Order", for: .normal)
+//        buttonAdd.translatesAutoresizingMaskIntoConstraints = false
+//        self.addSubview(buttonAdd)
+        
+        
         buttonAdd = UIButton(type: .system)
-        buttonAdd.titleLabel?.font = .boldSystemFont(ofSize: 16)
         buttonAdd.setTitle("Create New Order", for: .normal)
+        buttonAdd.titleLabel?.font = .boldSystemFont(ofSize: 25)
+        buttonAdd.backgroundColor = .systemTeal
+        buttonAdd.layer.cornerRadius = 16 // Adjust corner radius as needed
+        buttonAdd.setTitleColor(.white, for: .normal)
         buttonAdd.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(buttonAdd)
+
     }
     
     func initConstraints(){
         NSLayoutConstraint.activate([
-            tableViewContacts.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
-            tableViewContacts.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            tableViewContacts.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
-//            tableViewContacts.bottomAnchor.constraint(equalTo: bottomAddView.topAnchor, constant: -8),
+            tableViewOrders.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8),
+            tableViewOrders.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -34),
+
+            tableViewOrders.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+            tableViewOrders.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             
             
-            buttonAdd.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8),
-            buttonAdd.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
-            buttonAdd.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
+            buttonAdd.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            buttonAdd.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 18),
+            buttonAdd.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -19),
+            
+//            buttonAdd.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -1),
+//            buttonAdd.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
+//            buttonAdd.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
 //            buttonAdd.centerYAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerYAnchor),
+            
+//            tableViewOrders.bottomAnchor.constraint(equalTo: buttonAdd.topAnchor, constant: -8),
+
         ])
     }
     

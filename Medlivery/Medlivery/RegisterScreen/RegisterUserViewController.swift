@@ -178,6 +178,8 @@ class RegisterUserViewController: UIViewController {
             if let error = error {
                 print("Error adding message: \(error)")
             } else {
+                
+                
                 print("Profile added successfully")
             }
         }

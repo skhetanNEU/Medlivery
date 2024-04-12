@@ -45,6 +45,9 @@
 		3F9F7F3E2BC194BA00F357BE /* OrdersListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F3B2BC194BA00F357BE /* OrdersListView.swift */; };
 		3F9F7F422BC194D800F357BE /* OrderDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F402BC194D800F357BE /* OrderDetailsController.swift */; };
 		3F9F7F432BC194D800F357BE /* OrderDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9F7F412BC194D800F357BE /* OrderDetailsView.swift */; };
+		EFFCBA312BC5E18600CEB629 /* IndividualOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFCBA302BC5E18600CEB629 /* IndividualOrder.swift */; };
+		EFFCBA332BC612EE00CEB629 /* IndividualOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFCBA322BC612EE00CEB629 /* IndividualOrderDetails.swift */; };
+		EFFCBA372BC9C0B800CEB629 /* UploadOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFCBA362BC9C0B800CEB629 /* UploadOrder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,6 +86,9 @@
 		3F9F7F3B2BC194BA00F357BE /* OrdersListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrdersListView.swift; sourceTree = "<group>"; };
 		3F9F7F402BC194D800F357BE /* OrderDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsController.swift; sourceTree = "<group>"; };
 		3F9F7F412BC194D800F357BE /* OrderDetailsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderDetailsView.swift; sourceTree = "<group>"; };
+		EFFCBA302BC5E18600CEB629 /* IndividualOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualOrder.swift; sourceTree = "<group>"; };
+		EFFCBA322BC612EE00CEB629 /* IndividualOrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualOrderDetails.swift; sourceTree = "<group>"; };
+		EFFCBA362BC9C0B800CEB629 /* UploadOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadOrder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +171,8 @@
 		3F9A1F212BAF5AD200DBE7A7 /* Medlivery */ = {
 			isa = PBXGroup;
 			children = (
+				EFFCBA352BC9C08200CEB629 /* DataModels */,
+				EFFCBA2F2BC5E14B00CEB629 /* UtilityStructs */,
 				3F9A1F222BAF5AD200DBE7A7 /* AppDelegate.swift */,
 				3F9A1F242BAF5AD200DBE7A7 /* SceneDelegate.swift */,
 				3F9A1F282BAF5AD200DBE7A7 /* Main.storyboard */,
@@ -213,6 +221,23 @@
 				3F9F7F412BC194D800F357BE /* OrderDetailsView.swift */,
 			);
 			path = ViewOrder;
+			sourceTree = "<group>";
+		};
+		EFFCBA2F2BC5E14B00CEB629 /* UtilityStructs */ = {
+			isa = PBXGroup;
+			children = (
+				EFFCBA302BC5E18600CEB629 /* IndividualOrder.swift */,
+				EFFCBA322BC612EE00CEB629 /* IndividualOrderDetails.swift */,
+			);
+			path = UtilityStructs;
+			sourceTree = "<group>";
+		};
+		EFFCBA352BC9C08200CEB629 /* DataModels */ = {
+			isa = PBXGroup;
+			children = (
+				EFFCBA362BC9C0B800CEB629 /* UploadOrder.swift */,
+			);
+			path = DataModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -310,6 +335,7 @@
 				21849B5C2BC0ED5A00509724 /* MapView.swift in Sources */,
 				3F9F7F432BC194D800F357BE /* OrderDetailsView.swift in Sources */,
 				21849B6A2BC0EF6200509724 /* SearchTableViewCell.swift in Sources */,
+				EFFCBA372BC9C0B800CEB629 /* UploadOrder.swift in Sources */,
 				3F9F7F362BC194A700F357BE /* CreateOrderController.swift in Sources */,
 				3F7F85E02BBDEB4200C67E00 /* LoginViewController.swift in Sources */,
 				21849B6C2BC0EF8D00509724 /* SearchBottomSheet.swift in Sources */,
@@ -324,8 +350,10 @@
 				3F7F85F72BBDEED400C67E00 /* ProgressSpinnerDelegate.swift in Sources */,
 				3F56DFFC2BC0D4050083FBB6 /* Utilities.swift in Sources */,
 				3F9A1F252BAF5AD200DBE7A7 /* SceneDelegate.swift in Sources */,
+				EFFCBA332BC612EE00CEB629 /* IndividualOrderDetails.swift in Sources */,
 				3F9F7F3E2BC194BA00F357BE /* OrdersListView.swift in Sources */,
 				21849B682BC0EE7900509724 /* Place.swift in Sources */,
+				EFFCBA312BC5E18600CEB629 /* IndividualOrder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
