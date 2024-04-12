@@ -11,10 +11,10 @@ import UIKit
 struct UploadOrder: Codable{
     
     @DocumentID var id: String?
-    var location: String?
-    var currentTime: String?
+    var location: String
+    var currentTime: String
     
-    init(location: String? = nil, currentTime: String? = nil) {
+    init(location: String, currentTime: String) {
         self.location = location
         self.currentTime = currentTime
     }

@@ -90,7 +90,7 @@ class CreateOrderController: UIViewController {
         let individualOrder = IndividualOrder(name : orderString, location: location, image: pickedImage ?? (UIImage(systemName: "photo"))!)
         
         addOrderToFireStore(individualOrder: individualOrder)
-        delegate.delegateOnCreateOrder(individualOrder: individualOrder)
+//        delegate.delegateOnCreateOrder(individualOrder: individualOrder)
            
         navigationController?.popViewController(animated: true)
     }

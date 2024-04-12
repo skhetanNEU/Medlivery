@@ -15,13 +15,15 @@ class ViewController: UIViewController {
     var handleAuth: AuthStateDidChangeListenerHandle?
     
     let ordersListView = OrdersListView()
-    var orders = [IndividualOrder]()
+    var orders = [UploadOrder]()
     
     override func loadView() {
         view = ordersListView
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
+        print("View will appear called")
         super.viewWillAppear(animated)
         
         //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
@@ -34,25 +36,24 @@ class ViewController: UIViewController {
                 print("Logged in already")
                 self.currentUser = user
                 //MARK: Observe Firestore database to display the contacts list...
-//                self.chatScreen.labelText.text = "Welcome \(user?.displayName ?? "Anonymous")!"
-//                self.database.collection("users")
-//                    .document((self.currentUser?.email)!)
-//                    .collection("contacts")
-//                    .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
-//                        if let documents = querySnapshot?.documents{
-//                            self.contactsList.removeAll()
-//                            for document in documents{
-//                                do{
-//                                    let contact  = try document.data(as: Contact.self)
-//                                    self.contactsList.append(contact)
-//                                }catch{
-//                                    print(error)
-//                                }
-//                            }
-//                            self.contactsList.sort(by: {$0.name < $1.name})
-//                            self.chatScreen.tableViewContacts.reloadData()
-//                        }
-//                    })
+                self.database.collection("users")
+                    .document((self.currentUser?.email)!)
+                    .collection("orders")
+                    .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                        if let documents = querySnapshot?.documents{
+                            self.orders.removeAll()
+                            for document in documents{
+                                do{
+                                    let eachOrder = try document.data(as: UploadOrder.self)
+                                    self.orders.append(eachOrder)
+                                }catch{
+                                    print(error)
+                                }
+                            }
+                            self.orders.sort(by: {$0.currentTime < $1.currentTime})
+                            self.ordersListView.tableViewOrders.reloadData()
+                        }
+                    })
             }
         }
     }
@@ -147,10 +148,10 @@ class ViewController: UIViewController {
     }
     
     //MARK: got the new contacts back and delegated to ViewController...
-    func delegateOnCreateOrder(individualOrder: IndividualOrder){
+    func delegateOnCreateOrder(uploadOrders: UploadOrder){
         
         print("Delegate called successfully")
-        orders.append(individualOrder)
+        orders.append(uploadOrders)
         ordersListView.tableViewOrders.reloadData()
         print("Delegate emded successfully")
 
@@ -179,7 +180,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         
     }
     
-    func onOrdersSelect(indexRow: Int, individualOrder: IndividualOrder) {
+    func onOrdersSelect(indexRow: Int, individualOrder: UploadOrder) {
         let orderDetailsController = OrderDetailsController()
         
         // create object of Individual Order Details
