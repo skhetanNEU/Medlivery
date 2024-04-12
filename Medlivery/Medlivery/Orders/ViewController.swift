@@ -78,7 +78,7 @@ class ViewController: UIViewController {
                         action: #selector(logoutButtonTapped)
                     )
         
-        let chatButton = UIBarButtonItem(image: UIImage(systemName: "ellipses.bubble.fill"), style: .plain, target: self, action: #selector(onChatButtonTapped))
+        let chatButton = UIBarButtonItem(image: UIImage(systemName: "message.badge.filled.fill"), style: .plain, target: self, action: #selector(onChatButtonTapped))
 //        let powerButton = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"), style: .plain, target: self, action: #selector(onLogoutButtonTapped))
 //        
         

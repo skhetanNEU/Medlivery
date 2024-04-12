@@ -139,7 +139,7 @@ class RegisterUserViewController: UIViewController {
         Auth.auth().createUser(withEmail: email, password: password, completion: {result, error in
             if error == nil{
                 //MARK: the user creation is successful...
-                self.addProfileInFirebase(name: name, phone:phoneNumber, address:address, city:city)
+                self.addProfileInFirebase(name: name, email:email, phone:phoneNumber, address:address, city:city)
             }else{
                 //MARK: there is a error creating the user...
                 print(error!)
@@ -149,13 +149,13 @@ class RegisterUserViewController: UIViewController {
     }
     
     //MARK: We set the name of the user after we create the account...
-    func addProfileInFirebase(name: String, phone:String, address:String, city:String){
+    func addProfileInFirebase(name: String, email:String, phone:String, address:String, city:String){
         let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
         changeRequest?.displayName = name
         changeRequest?.commitChanges(completion: {(error) in
             if error == nil{
                 //MARK: the profile update is successful...
-                self.addProfileDetails(name: name, phone: phone, address: address, city: city)
+                self.addProfileDetails(name: name, email:email, phone: phone, address: address, city: city)
             }else{
                 //MARK: there was an error updating the profile...
                 self.hideActivityIndicator()
@@ -164,7 +164,7 @@ class RegisterUserViewController: UIViewController {
         })
     }
     
-    func addProfileDetails(name: String, phone:String, address:String, city:String){
+    func addProfileDetails(name: String, email:String, phone:String, address:String, city:String){
         let db = Firestore.firestore()
 
         let profileData: [String: Any] = [
@@ -174,12 +174,10 @@ class RegisterUserViewController: UIViewController {
             "city": city
         ]
 
-        db.collection("users").addDocument(data: profileData) { error in
+        db.collection("users").document(email).setData(profileData) { error in
             if let error = error {
-                print("Error adding message: \(error)")
+                print("Error adding profile: \(error)")
             } else {
-                
-                
                 print("Profile added successfully")
             }
         }
