@@ -64,6 +64,8 @@ class ViewController: UIViewController {
                 if let error = error {
                     print("Error adding current user to support contact's customers: \(error.localizedDescription)")
                 } else {
+                    let supportViewController = SupportViewController()
+                    supportViewController.botSendMessage(message: "Hi! How can I help you?", senderID: "support@medlivery.com", receiverID: (self.currentUser?.email)!);
                     print("Current user added successfully to support contact's customers")
                 }
             }

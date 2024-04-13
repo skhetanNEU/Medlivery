@@ -209,7 +209,7 @@ extension SupportViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! SupportTableViewCell
         let message = messages[indexPath.row]
         cell.labelMessage.text = message.text
-        if message.senderID == senderID {
+        if message.senderID != "support@medlivery.com" {
             cell.labelMessage.textAlignment = .right
             cell.labelMessage.backgroundColor = UIColor(red: 0.87, green: 0.96, blue: 0.87, alpha: 1.0)
         } else {
