@@ -12,6 +12,8 @@ import MapKit
 class MapViewController: UIViewController {
 
     let mapView = MapView()
+    var selectedPlaceName: String?
+    var createOrder: CreateOrderController!
     
     let locationManager = CLLocationManager()
     
@@ -38,13 +40,13 @@ class MapViewController: UIViewController {
         onButtonCurrentLocationTapped()
         
         
-        let northeastern = Place(
-            title: "Northeastern University",
-            coordinate: CLLocationCoordinate2D(latitude: 42.339918, longitude: -71.089797),
-            info: "LVX VERITAS VIRTVS"
-        )
+       // let northeastern = Place(
+       //     title: "Northeastern University",
+       //     coordinate: CLLocationCoordinate2D(latitude: 42.339918, longitude: -71.089797),
+       //     info: "LVX VERITAS VIRTVS"
+       // )
         
-        mapView.mapView.addAnnotation(northeastern)
+       // mapView.mapView.addAnnotation(northeastern)
         mapView.mapView.delegate = self
         
     }

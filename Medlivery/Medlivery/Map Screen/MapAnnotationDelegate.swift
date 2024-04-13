@@ -31,18 +31,11 @@ extension MapViewController: MKMapViewDelegate{
         
         guard let annotation = view.annotation as? Place else { return }
         
-        let ac = UIAlertController(
-            title: annotation.title,
-            message: "Navigate to \(annotation.title!) now?",
-            preferredStyle: .alert
-        )
-        ac.addAction(UIAlertAction(title: "Navigate", style: .default, handler: {_ in
-            let launchOptions = [
-                MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving
-            ]
-            annotation.mapItem?.openInMaps(launchOptions: launchOptions)
-        }))
-        ac.addAction(UIAlertAction(title: "Cancel", style: .cancel))
-        present(ac, animated: true)
-    }
+        self.selectedPlaceName = annotation.title
+        
+//        let createOrderController = CreateOrderController()
+        createOrder.placeName = self.selectedPlaceName
+        
+        createOrder.setPlaceName()
+        self.navigationController?.popViewController(animated: true) }
 }

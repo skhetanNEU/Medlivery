@@ -23,19 +23,33 @@ class CreateOrderController: UIViewController {
     let childProgressView = ProgressSpinnerViewController()
     let storage = Storage.storage()
     var storedProfilePhotoURL:URL?
-
+    var placeName: String?
+    
     override func loadView() {
         view = createOrderView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(placeName)
         orderNumber = 1
         
         createOrderView.buttonUploadPrescription.menu = getMenuImagePicker()
         
         createOrderView.buttonCreateOrder.addTarget(self, action: #selector(onAddOrderButtonTapped), for: .touchUpInside)
         
+        createOrderView.navigationButton.addTarget(self, action: #selector(onNavigationButtonTapped), for: .touchUpInside)
+        
+    }
+    
+    @objc func onNavigationButtonTapped(){
+        let mapViewController = MapViewController();
+        mapViewController.createOrder = self
+        self.navigationController?.pushViewController(mapViewController, animated: true);
+    }
+    
+    func setPlaceName() {
+        createOrderView.textFieldLocation.text = self.placeName
     }
     
     func getMenuImagePicker() -> UIMenu{

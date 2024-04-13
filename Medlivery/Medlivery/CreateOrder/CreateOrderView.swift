@@ -47,8 +47,7 @@ class CreateOrderView: UIView {
     
     func setupTextFieldLocation(){
         textFieldLocation = UITextField()
-        textFieldLocation.placeholder = "Location"
-        textFieldLocation.text = "CVS, Allston"
+        textFieldLocation.placeholder = "Enter Pharmacy"
         textFieldLocation.borderStyle = .roundedRect
         textFieldLocation.translatesAutoresizingMaskIntoConstraints = false
         textFieldLocation.widthAnchor.constraint(equalToConstant: 320).isActive = true
@@ -56,7 +55,7 @@ class CreateOrderView: UIView {
     }
     
     func setupNavigationIconButton() {
-        let navigationIcon = UIImage(systemName: "arrow.up.circle.fill")
+        let navigationIcon = UIImage(systemName: "arrow.up.right.circle.fill")
         navigationButton = UIButton(type: .system)
         navigationButton.setImage(navigationIcon, for: .normal)
         navigationButton.tintColor = .systemBlue
