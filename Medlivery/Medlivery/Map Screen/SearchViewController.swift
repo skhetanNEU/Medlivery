@@ -24,6 +24,10 @@ class SearchViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonTapped))
+            self.navigationItem.leftBarButtonItem = backButton
+        
         searchBottomSheet.tableViewSearchResults.delegate = self
         searchBottomSheet.tableViewSearchResults.dataSource = self
         searchBottomSheet.searchBar.delegate = self
@@ -36,12 +40,18 @@ class SearchViewController: UIViewController {
             name: .placesFromMap,
             object: nil
         )
-        
     }
     
     @objc func notificationForPlaces(notification: Notification){
         mapItems = notification.object as! [MKMapItem]
         self.searchBottomSheet.tableViewSearchResults.reloadData()
+    }
+    @objc func backButtonTapped() {
+        if self.navigationController?.viewControllers.count ?? 0 > 1 {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
 }

@@ -23,7 +23,13 @@ class CreateOrderController: UIViewController {
     let childProgressView = ProgressSpinnerViewController()
     let storage = Storage.storage()
     var storedProfilePhotoURL:URL?
-    var placeName: String?
+    var storeName: String?
+    var storeAddressLine1: String?
+    var storeAddressLine2: String?
+    var storeAddressCity: String?
+    var storeAddressState: String?
+    var storeAddressZip: String?
+    var storeAddressCountry: String?
     
     override func loadView() {
         view = createOrderView
@@ -31,7 +37,6 @@ class CreateOrderController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(placeName)
         orderNumber = 1
         
         createOrderView.buttonUploadPrescription.menu = getMenuImagePicker()
@@ -49,8 +54,9 @@ class CreateOrderController: UIViewController {
     }
     
     func setPlaceName() {
-        createOrderView.textFieldLocation.text = self.placeName
+        createOrderView.textFieldLocation.text = self.storeName
     }
+    
     
     func getMenuImagePicker() -> UIMenu{
         let menuItems = [

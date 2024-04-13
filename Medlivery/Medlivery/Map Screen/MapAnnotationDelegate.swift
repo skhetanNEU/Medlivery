@@ -31,10 +31,15 @@ extension MapViewController: MKMapViewDelegate{
         
         guard let annotation = view.annotation as? Place else { return }
         
-        self.selectedPlaceName = annotation.title
         
 //        let createOrderController = CreateOrderController()
-        createOrder.placeName = self.selectedPlaceName
+        createOrder.storeName = annotation.title
+        createOrder.storeAddressLine1 = annotation.addressLine1
+        createOrder.storeAddressLine2 = annotation.addressLine2
+        createOrder.storeAddressCity = annotation.city
+        createOrder.storeAddressState = annotation.state
+        createOrder.storeAddressZip = annotation.zipcode
+        createOrder.storeAddressCountry = annotation.country
         
         createOrder.setPlaceName()
         self.navigationController?.popViewController(animated: true) }

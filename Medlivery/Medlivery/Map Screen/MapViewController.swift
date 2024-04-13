@@ -8,11 +8,11 @@
 import UIKit
 import CoreLocation
 import MapKit
+import Contacts
 
 class MapViewController: UIViewController {
 
     let mapView = MapView()
-    var selectedPlaceName: String?
     var createOrder: CreateOrderController!
     
     let locationManager = CLLocationManager()
@@ -31,6 +31,8 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Search in Map"
+        let backButton = UIBarButtonItem(title: "Back", style: .plain, target: self, action: #selector(backButtonTapped))
+            self.navigationItem.leftBarButtonItem = backButton
         
         mapView.buttonCurrentLocation.addTarget(self, action: #selector(onButtonCurrentLocationTapped), for: .touchUpInside)
                 
@@ -48,6 +50,14 @@ class MapViewController: UIViewController {
        // mapView.mapView.addAnnotation(northeastern)
         mapView.mapView.delegate = self
         
+    }
+    
+    @objc func backButtonTapped() {
+        if self.navigationController?.viewControllers.count ?? 0 > 1 {
+            self.navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
     }
     
     @objc func onButtonCurrentLocationTapped(){
@@ -80,11 +90,26 @@ class MapViewController: UIViewController {
                 longitude: coordinate.longitude
             )
         )
+        
+        let postalAddress = CNMutablePostalAddress()
+           postalAddress.street = placeItem.placemark.thoroughfare ?? ""
+           postalAddress.subLocality = placeItem.placemark.subLocality ?? ""
+           postalAddress.city = placeItem.placemark.locality ?? ""
+           postalAddress.state = placeItem.placemark.administrativeArea ?? ""
+           postalAddress.postalCode = placeItem.placemark.postalCode ?? ""
+           postalAddress.country = placeItem.placemark.country ?? ""
+            
         let place = Place(
             title: placeItem.name!,
             coordinate: coordinate,
-            info: placeItem.description
-        )
+            info: placeItem.description,
+            addressLine1:postalAddress.street,
+            addressLine2:postalAddress.subLocality,
+            city: postalAddress.city,
+            state: postalAddress.state,
+            zipcode: postalAddress.postalCode,
+            country: postalAddress.country
+            )
         mapView.mapView.addAnnotation(place)
     }
 
