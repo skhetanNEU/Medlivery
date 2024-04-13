@@ -18,7 +18,7 @@ class SupportView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .white
+        self.backgroundColor = Utilities.beigeColor
         
         setupTableViewContacts()
         
@@ -32,6 +32,7 @@ class SupportView: UIView {
     //MARK: the table view to show the list of contacts...
     func setupTableViewContacts(){
         tableViewContacts = UITableView()
+        tableViewContacts.backgroundColor = Utilities.beigeColor
         tableViewContacts.register(SupportTableViewCell.self, forCellReuseIdentifier: "contactCell")
         tableViewContacts.translatesAutoresizingMaskIntoConstraints = false
         tableViewContacts.transform = CGAffineTransform(rotationAngle: -CGFloat.pi)

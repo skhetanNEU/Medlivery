@@ -33,17 +33,18 @@ class SupportViewController: UIViewController {
         } else if tempMessage.contains("how are you") {
             return "I'm fine, how about you?"
         } else {
-            return "That's cool."
+            return "Sure, will help you right away"
         }
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Customer Support"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
         messageScreen.tableViewContacts.dataSource = self
         messageScreen.tableViewContacts.delegate = self
         messageScreen.tableViewContacts.separatorStyle = .none
+        messageScreen.tableViewContacts.backgroundColor = Utilities.beigeColor
 
         // Set up send button action
         messageScreen.buttonSend.addTarget(self, action: #selector(converse), for: .touchUpInside)
@@ -210,9 +211,11 @@ extension SupportViewController: UITableViewDelegate, UITableViewDataSource{
         let message = messages[indexPath.row]
         cell.labelMessage.text = message.text
         if message.senderID != "support@medlivery.com" {
+            cell.updateLayoutForSenderID(true)
             cell.labelMessage.textAlignment = .right
             cell.labelMessage.backgroundColor = UIColor(red: 0.87, green: 0.96, blue: 0.87, alpha: 1.0)
         } else {
+            cell.updateLayoutForSenderID(false)
             cell.labelMessage.textAlignment = .left
             cell.labelMessage.backgroundColor = UIColor(red: 0.8, green: 0.9, blue: 1.0, alpha: 1.0)
         }

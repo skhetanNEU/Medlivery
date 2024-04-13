@@ -12,6 +12,7 @@ class OrdersTableViewCell: UITableViewCell {
     var wrapperCellView: UIView!
     var labelName: UILabel!
     var labelDate: UILabel!
+    var lightView: UIView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -20,8 +21,11 @@ class OrdersTableViewCell: UITableViewCell {
         setupWrapperCellView()
         setupLabelName()
         setupLabelDate()
+        setupLightView()
         
         initConstraints()
+        
+        startBlinking()
     }
     
     required init?(coder: NSCoder) {
@@ -60,6 +64,14 @@ class OrdersTableViewCell: UITableViewCell {
         wrapperCellView.addSubview(labelDate)
     }
     
+    func setupLightView(){
+        lightView = UIView()
+        lightView.backgroundColor = .red // Change color as needed
+        lightView.layer.cornerRadius = 5
+        lightView.translatesAutoresizingMaskIntoConstraints = false
+        wrapperCellView.addSubview(lightView)
+    }
+    
     
 //    func setupLabelEmail(){
 //        labelEmail = UILabel()
@@ -80,13 +92,17 @@ class OrdersTableViewCell: UITableViewCell {
             labelName.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 8),
             labelName.leadingAnchor.constraint(equalTo: wrapperCellView.leadingAnchor, constant: 10),
             labelName.heightAnchor.constraint(equalToConstant: 20),
-            labelName.widthAnchor.constraint(equalTo: wrapperCellView.widthAnchor),
+            labelName.widthAnchor.constraint(equalTo: wrapperCellView.widthAnchor, constant: -20),
             
             labelDate.topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 4),
             labelDate.leadingAnchor.constraint(equalTo: labelName.leadingAnchor),
             labelDate.heightAnchor.constraint(equalToConstant: 16),
             labelDate.widthAnchor.constraint(lessThanOrEqualTo: labelName.widthAnchor),
             
+            lightView.topAnchor.constraint(equalTo: wrapperCellView.topAnchor, constant: 8),
+            lightView.trailingAnchor.constraint(equalTo: wrapperCellView.trailingAnchor, constant: -20),
+            lightView.heightAnchor.constraint(equalToConstant: 20),
+            lightView.widthAnchor.constraint(equalToConstant: 20),
 
             wrapperCellView.heightAnchor.constraint(equalToConstant: 60)
             
@@ -103,6 +119,21 @@ class OrdersTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
+    }
+    
+    func startBlinking() {
+        UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse, .repeat], animations: {
+            self.lightView.alpha = 0.1
+            self.wrapperCellView.bringSubviewToFront(self.lightView)
+            print("Starting animation")
+        }, completion: nil)
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        lightView.layer.removeAllAnimations()
+        print("Reusing cell")
+        startBlinking()
     }
 
 }

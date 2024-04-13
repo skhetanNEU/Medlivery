@@ -77,6 +77,16 @@ class OrdersListView: UIView {
         ])
     }
     
+    func restartLight(){
+        print("Restarting Light for all cells")
+        for cell in tableViewOrders.visibleCells {
+            if let blinkingCell = cell as? OrdersTableViewCell {
+                print("Starting for cell 1")
+                blinkingCell.startBlinking()
+            }
+        }
+    }
+    
     
     //MARK: initializing constraints...
     required init?(coder: NSCoder) {

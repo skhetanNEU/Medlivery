@@ -142,6 +142,7 @@ class RegisterUserViewController: UIViewController {
                 self.addProfileInFirebase(name: name, email:email, phone:phoneNumber, address:address, city:city)
             }else{
                 //MARK: there is a error creating the user...
+                self.hideActivityIndicator()
                 print(error!)
                 self.showUserExistsAlert()
             }
@@ -182,6 +183,7 @@ class RegisterUserViewController: UIViewController {
             }
         }
         
+        self.hideActivityIndicator()
         self.goToOrdersScreen()
     }
     
@@ -212,7 +214,7 @@ class RegisterUserViewController: UIViewController {
     }
     
     func showInvalidEmailAlert(){
-        let alert = UIAlertController(title: "Error!", message: "Email is invalid or conatains uppercase letters!!", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Error!", message: "Email is invalid or contains uppercase letters!!", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "OK", style: .default))
         

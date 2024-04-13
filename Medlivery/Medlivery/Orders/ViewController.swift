@@ -23,7 +23,6 @@ class ViewController: UIViewController {
     
     func addSupportContactForCurrentUser() {
         guard let currentUser = Auth.auth().currentUser else {
-            print("Chutiye")
             return
         }
         
@@ -76,6 +75,7 @@ class ViewController: UIViewController {
         
         print("View will appear called")
         super.viewWillAppear(animated)
+        print("Came back to orders screen Top")
         
         //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
         handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
@@ -102,12 +102,15 @@ class ViewController: UIViewController {
                                     print(error)
                                 }
                             }
-                            self.orders.sort(by: {$0.currentTime < $1.currentTime})
+                            self.orders.sort(by: {$1.currentTime < $0.currentTime})
                             self.ordersListView.tableViewOrders.reloadData()
+                            self.ordersListView.restartLight()
                         }
                     })
             }
         }
+        print("Came back to orders screen")
+        
     }
 
     override func viewDidLoad() {
@@ -138,12 +141,14 @@ class ViewController: UIViewController {
 //        navigationItem.rightBarButtonItems = [powerButton, profileButton]
                     
         navigationItem.rightBarButtonItems = [logoutIcon, chatButton]
-        navigationController?.navigationBar.prefersLargeTitles = true
+        //navigationController?.navigationBar.prefersLargeTitles = true
         
         ordersListView.tableViewOrders.delegate = self
         ordersListView.tableViewOrders.dataSource = self
         
+        print("Printing in view did load")
         ordersListView.tableViewOrders.reloadData()
+        print("Printing in view did load after reload")
                 
 //        view.bringSubviewToFront(chatScreen.floatingButtonAddContact)
 //        

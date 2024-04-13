@@ -13,6 +13,7 @@ class SupportTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.backgroundColor = Utilities.beigeColor
         
         setupLabelMessage()
         initConstraints()
@@ -39,6 +40,24 @@ class SupportTableViewCell: UITableViewCell {
             labelMessage.trailingAnchor.constraint(lessThanOrEqualTo: self.contentView.trailingAnchor, constant: -24),
             labelMessage.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -8)
         ])
+    }
+    
+    func updateLayoutForSenderID(_ isSender: Bool) {
+        if isSender {
+            NSLayoutConstraint.deactivate([
+                labelMessage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -24)
+            ])
+            NSLayoutConstraint.activate([
+                labelMessage.leadingAnchor.constraint(greaterThanOrEqualTo: self.contentView.leadingAnchor, constant: 24)
+            ])
+        } else {
+            NSLayoutConstraint.deactivate([
+               labelMessage.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 24)
+           ])
+            NSLayoutConstraint.activate([
+               labelMessage.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -24),
+           ])
+        }
     }
 
     override func awakeFromNib() {

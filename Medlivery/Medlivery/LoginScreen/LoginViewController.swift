@@ -12,21 +12,28 @@ class LoginViewController: UIViewController {
 
     let loginScreen = LoginScreenView()
     let childProgressView = ProgressSpinnerViewController()
+    private var tapGesture: UITapGestureRecognizer?
     
     override func viewWillAppear(_ animated: Bool) {
-        print("In login")
         super.viewWillAppear(animated)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Creating login")
-
         view = loginScreen
         
         loginScreen.buttonLogin.addTarget(self, action: #selector(onButtonLoginTapped), for: .touchUpInside)
         loginScreen.buttonRegister.addTarget(self, action: #selector(onButtonRegisterTapped), for: .touchUpInside)
+        
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboardOnTap))
+        tapRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func hideKeyboardOnTap(){
+        //MARK: removing the keyboard from screen...
+        view.endEditing(true)
     }
     
     @objc func onButtonLoginTapped(){
@@ -65,7 +72,6 @@ class LoginViewController: UIViewController {
             if error == nil{
                 //MARK: user authenticated...
                 self.hideActivityIndicator()
-                print("Going to orders screen")
                 self.goToOrdersScreen()
             }else{
                 self.hideActivityIndicator()
