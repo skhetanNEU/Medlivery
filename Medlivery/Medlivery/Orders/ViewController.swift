@@ -13,7 +13,7 @@ class ViewController: UIViewController {
     var currentUser:FirebaseAuth.User?
     let database = Firestore.firestore()
     var handleAuth: AuthStateDidChangeListenerHandle?
-    
+    var selectedOrder: UploadOrder?
     let ordersListView = OrdersListView()
     var orders = [UploadOrder]()
     
@@ -175,19 +175,55 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     //MARK: deal with user interaction with a cell...
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(self.orders[indexPath.row])
-        onOrdersSelect(indexRow: indexPath.row, individualOrder: self.orders[indexPath.row])
+        onOrdersSelect(indexRow: indexPath.row, uploadOrder: self.orders[indexPath.row])
 
         
     }
     
-    func onOrdersSelect(indexRow: Int, individualOrder: UploadOrder) {
+    func onOrdersSelect(indexRow: Int, uploadOrder: UploadOrder) {
         let orderDetailsController = OrderDetailsController()
+                
+        
+        
+        let userData = self.database.collection("users").document((self.currentUser?.email)!)
+
+        // Get the document snapshot
+        userData.getDocument { (document, error) in
+            if let error = error {
+                print("Error fetching document: \(error)")
+                return
+            }
+            
+            // Check if the document exists
+            guard let document = document, document.exists else {
+                print("Document does not exist")
+                return
+            }
+            
+            // Access the data from the document snapshot
+            if let data = document.data() {
+                // Create an instance of UserInfo struct from the retrieved data
+                orderDetailsController.orderDetails = IndividualOrderDetails(name: data["name"] as! String, email: self.currentUser?.email ?? "", phone: data["phone"] as! String, location: uploadOrder.location, currentDate: uploadOrder.currentTime, address: data["address"] as! String, cityState: data["city"] as! String, photoURL: uploadOrder.photoURL)
+                
+                self.navigationController?.pushViewController(orderDetailsController, animated: true)
+
+            } else {
+                print("Document data is empty")
+            }
+        }
+        
+        
+        
+        
+//        let individual = IndividualOrderDetails(name: self.currentUser?.displayName, email: currentUser?.email, phone: currentUser?.phoneNumber, location: uploadOrder.location, currentDate: uploadOrder.currentTime, address: currentUser.address, cityState: <#T##String#>)
+        
         
         // create object of Individual Order Details
         
 //        orderDetailsController.individualOrderDetails = individualOrderDetails
 //        eachController.delegate = self
-        navigationController?.pushViewController(orderDetailsController, animated: true)
+        
+        
     }
 }
 

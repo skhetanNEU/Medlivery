@@ -13,9 +13,11 @@ struct UploadOrder: Codable{
     @DocumentID var id: String?
     var location: String
     var currentTime: String
+    var photoURL: URL?
     
-    init(location: String, currentTime: String) {
+    init(location: String, currentTime: String, photoURL: URL?) {
         self.location = location
         self.currentTime = currentTime
+        self.photoURL = photoURL
     }
 }

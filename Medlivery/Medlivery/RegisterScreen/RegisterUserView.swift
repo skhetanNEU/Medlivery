@@ -84,8 +84,10 @@ class RegisterUserView: UIView {
         textFieldPassword = UITextField()
         textFieldPassword.placeholder = "Password"
         textFieldPassword.borderStyle = .roundedRect
-        textFieldPassword.translatesAutoresizingMaskIntoConstraints = false
         textFieldPassword.isSecureTextEntry = true
+        textFieldPassword.textContentType = .oneTimeCode
+        textFieldPassword.translatesAutoresizingMaskIntoConstraints = false
+        
         self.addSubview(textFieldPassword)
     }
     
@@ -93,8 +95,9 @@ class RegisterUserView: UIView {
         textFieldPasswordRepeat = UITextField()
         textFieldPasswordRepeat.placeholder = "Repeat Password"
         textFieldPasswordRepeat.borderStyle = .roundedRect
-        textFieldPasswordRepeat.translatesAutoresizingMaskIntoConstraints = false
         textFieldPasswordRepeat.isSecureTextEntry = true
+        textFieldPasswordRepeat.textContentType = .oneTimeCode
+        textFieldPasswordRepeat.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(textFieldPasswordRepeat)
     }
     

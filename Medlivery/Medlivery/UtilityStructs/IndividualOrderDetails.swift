@@ -10,28 +10,27 @@ import UIKit
 
 struct IndividualOrderDetails{
     
-    var name: String?
-    var email: String?
-    var phone: String?
-    var orderName: String?
-    var location: String?
-    var currentDate: String?
-    var address: String?
-    var cityState: String?
-    var zip: String?
-    var image: UIImage?
+    var name: String
+    var email: String
+    var phone: String
+//    var orderName: String
+    var location: String
+    var currentDate: String
+    var address: String
+    var cityState: String
+    var photoURL: URL?
     
-    init(name: String?, email: String? = nil, phone: String? = nil, orderName: String? = nil, location: String? = nil, currentDate: String? = nil, address: String? = nil, cityState: String? = nil, zip: String? = nil, image: UIImage? = (UIImage(systemName: "photo"))!) {
+//    init(name: String, email: String, phone: String, location: String, currentDate: String, address: String, cityState: String, zip: String? = nil, image: UIImage? = (UIImage(systemName: "photo"))!) {
+    
+    init(name: String, email: String, phone: String, location: String, currentDate: String, address: String, cityState: String, photoURL: URL?) {
         self.name = name
         self.email = email
         self.phone = phone
-        self.orderName = orderName
         self.location = location
         self.currentDate = currentDate
         self.address = address
         self.cityState = cityState
-        self.zip = zip
-        self.image = image
+        self.photoURL = photoURL
     }
     
 }

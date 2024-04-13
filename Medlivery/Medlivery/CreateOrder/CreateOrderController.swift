@@ -10,6 +10,7 @@ import UIKit
 import PhotosUI
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 
 class CreateOrderController: UIViewController {
     
@@ -20,6 +21,8 @@ class CreateOrderController: UIViewController {
     var orderNumber = 1
     let database = Firestore.firestore()
     let childProgressView = ProgressSpinnerViewController()
+    let storage = Storage.storage()
+    var storedProfilePhotoURL:URL?
 
     override func loadView() {
         view = createOrderView
@@ -89,10 +92,10 @@ class CreateOrderController: UIViewController {
         orderNumber += 1
         let individualOrder = IndividualOrder(name : orderString, location: location, image: pickedImage ?? (UIImage(systemName: "photo"))!)
         
-        addOrderToFireStore(individualOrder: individualOrder)
+        uploadProfilePhotoToStorage(individualOrder: individualOrder)
 //        delegate.delegateOnCreateOrder(individualOrder: individualOrder)
            
-        navigationController?.popViewController(animated: true)
+        
     }
     
     func addOrderToFireStore(individualOrder: IndividualOrder) {
@@ -101,10 +104,7 @@ class CreateOrderController: UIViewController {
         }
         
         let collectionOrders = database.collection("users").document(userEmail).collection("orders")
-        
-        showActivityIndicator()
-        
-        let uploadOrder = UploadOrder(location: individualOrder.location, currentTime: individualOrder.currentTime)
+        let uploadOrder = UploadOrder(location: individualOrder.location, currentTime: individualOrder.currentTime, photoURL: self.storedProfilePhotoURL)
         
         
         do {
@@ -113,32 +113,18 @@ class CreateOrderController: UIViewController {
                     print("Error adding document: \(error)")
                     // Hide progress indicator
                     self.hideActivityIndicator()
+                    self.navigationController?.popViewController(animated: true)
                     return
                 }
-                
-//                let orderUserDocumentRef = self.database.collection("users").document(userEmail)
-//                let orderUserCollectionRef = orderUserDocumentRef.collection("orders")
-                
-//                let currentOrder = UploadOrder(name: self.currentUser?.displayName ?? "", email: userEmail, phone: 0)
-//                do {
-//                    try orderUserCollectionRef.addDocument(from: uploadOrder) { error in
-//                        if let error = error {
-//                            print("Error adding current user to contact's user's contacts: \(error)")
-//                        }
-//                        
-//                        self.hideActivityIndicator()
-//                        
-//                        self.navigationController?.popViewController(animated: true)
-//                    }
-//                } catch {
-//                    print("Error adding current user to contact's user's contacts: \(error)")
-//                    self.hideActivityIndicator()
-//                }
+                self.hideActivityIndicator()
+                self.navigationController?.popViewController(animated: true)
             }
         } catch {
             print("Error adding document: \(error)")
             self.hideActivityIndicator()
+            self.navigationController?.popViewController(animated: true)
         }
+        
     }
     
     
@@ -156,7 +142,7 @@ extension CreateOrderController:PHPickerViewControllerDelegate{
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
         
-        print(results)
+//        print(results)
         
         let itemprovider = results.map(\.itemProvider)
         

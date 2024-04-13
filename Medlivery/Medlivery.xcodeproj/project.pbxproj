@@ -48,6 +48,8 @@
 		EFFCBA312BC5E18600CEB629 /* IndividualOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFCBA302BC5E18600CEB629 /* IndividualOrder.swift */; };
 		EFFCBA332BC612EE00CEB629 /* IndividualOrderDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFCBA322BC612EE00CEB629 /* IndividualOrderDetails.swift */; };
 		EFFCBA372BC9C0B800CEB629 /* UploadOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFCBA362BC9C0B800CEB629 /* UploadOrder.swift */; };
+		EFFCBA392BC9F94300CEB629 /* CreateOrderFirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFCBA382BC9F94300CEB629 /* CreateOrderFirebaseManager.swift */; };
+		EFFCBA3B2BCA095900CEB629 /* ImageViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFFCBA3A2BCA095900CEB629 /* ImageViewUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -89,6 +91,8 @@
 		EFFCBA302BC5E18600CEB629 /* IndividualOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualOrder.swift; sourceTree = "<group>"; };
 		EFFCBA322BC612EE00CEB629 /* IndividualOrderDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualOrderDetails.swift; sourceTree = "<group>"; };
 		EFFCBA362BC9C0B800CEB629 /* UploadOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadOrder.swift; sourceTree = "<group>"; };
+		EFFCBA382BC9F94300CEB629 /* CreateOrderFirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateOrderFirebaseManager.swift; sourceTree = "<group>"; };
+		EFFCBA3A2BCA095900CEB629 /* ImageViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +203,7 @@
 			children = (
 				3F9F7F342BC194A700F357BE /* CreateOrderController.swift */,
 				3F9F7F352BC194A700F357BE /* CreateOrderView.swift */,
+				EFFCBA382BC9F94300CEB629 /* CreateOrderFirebaseManager.swift */,
 			);
 			path = CreateOrder;
 			sourceTree = "<group>";
@@ -228,6 +233,7 @@
 			children = (
 				EFFCBA302BC5E18600CEB629 /* IndividualOrder.swift */,
 				EFFCBA322BC612EE00CEB629 /* IndividualOrderDetails.swift */,
+				EFFCBA3A2BCA095900CEB629 /* ImageViewUtils.swift */,
 			);
 			path = UtilityStructs;
 			sourceTree = "<group>";
@@ -326,6 +332,7 @@
 				21849B552BC0EC2700509724 /* MapViewController.swift in Sources */,
 				3F9F7F3D2BC194BA00F357BE /* OrdersTableViewCell.swift in Sources */,
 				3F7F85DE2BBDEB2200C67E00 /* LoginScreenView.swift in Sources */,
+				EFFCBA392BC9F94300CEB629 /* CreateOrderFirebaseManager.swift in Sources */,
 				21849B5E2BC0EDB500509724 /* LocationManager.swift in Sources */,
 				3F7F85E42BBDEB7600C67E00 /* RegisterUserView.swift in Sources */,
 				3F7F85F52BBDEEA500C67E00 /* ProgressSpinnerViewController.swift in Sources */,
@@ -339,6 +346,7 @@
 				3F9F7F362BC194A700F357BE /* CreateOrderController.swift in Sources */,
 				3F7F85E02BBDEB4200C67E00 /* LoginViewController.swift in Sources */,
 				21849B6C2BC0EF8D00509724 /* SearchBottomSheet.swift in Sources */,
+				EFFCBA3B2BCA095900CEB629 /* ImageViewUtils.swift in Sources */,
 				21849B6E2BC0EFB700509724 /* SearchViewController.swift in Sources */,
 				21849B602BC0EDDA00509724 /* MapAnnotationDelegate.swift in Sources */,
 				3F7F85E22BBDEB6700C67E00 /* RegisterUserViewController.swift in Sources */,

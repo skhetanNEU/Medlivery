@@ -85,7 +85,7 @@ class OrderDetailsView: UIView {
         storeLocation = UILabel()
         storeLocation.textAlignment = .left
         
-        storeLocation.text = "CVS, Allston"
+        storeLocation.text = "CVS, Brighton"
         storeLocation.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(storeLocation)
     }
@@ -114,7 +114,7 @@ class OrderDetailsView: UIView {
         labelAddress = UILabel()
         labelAddress.textAlignment = .left
         
-        labelAddress.text = "604 Cambridge Street, Allston"
+        labelAddress.text = "75 St. Alphonsus Street"
         labelAddress.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(labelAddress)
     }
@@ -122,7 +122,7 @@ class OrderDetailsView: UIView {
     func setupLabelCityState(){
         labelCityState = UILabel()
         labelCityState.textAlignment = .left
-        labelCityState.text = "Boston, MA"
+        labelCityState.text = "Quincy, MA"
         labelCityState.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(labelCityState)
     }
