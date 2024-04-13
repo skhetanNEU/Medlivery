@@ -21,6 +21,75 @@ class ViewController: UIViewController {
         view = ordersListView
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
+        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
+            if user == nil{
+                self.currentUser = nil
+                print("Not logged")
+                self.goToLoginScreen()
+            }else{
+                print("Logged in already")
+                self.currentUser = user
+                self.addSupportContactForCurrentUser()
+                //MARK: Observe Firestore database to display the contacts list...
+                self.database.collection("users")
+                    .document((self.currentUser?.email)!)
+                    .collection("orders")
+                    .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
+                        if let documents = querySnapshot?.documents{
+                            self.orders.removeAll()
+                            for document in documents{
+                                do{
+                                    let eachOrder = try document.data(as: UploadOrder.self)
+                                    self.orders.append(eachOrder)
+                                }catch{
+                                    print(error)
+                                }
+                            }
+                            self.orders.sort(by: {$1.currentTime < $0.currentTime})
+                            self.ordersListView.tableViewOrders.reloadData()
+                        }
+                    })
+            }
+        }
+        
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        title = "Orders"
+        
+        // Add observer for applicationWillEnterForeground notification
+        NotificationCenter.default.addObserver(self, selector: #selector(handleAppWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+                
+        
+        ordersListView.tableViewOrders.separatorStyle = .none
+        ordersListView.tableViewOrders.backgroundColor = Utilities.beigeColor
+        
+        ordersListView.buttonAdd.addTarget(self, action: #selector(onButtonCreateOrderTapped), for: .touchUpInside)
+        
+        let logoutIcon = UIBarButtonItem(
+                        image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"),
+                        style: .plain,
+                        target: self,
+                        action: #selector(logoutButtonTapped)
+                    )
+        
+        let chatButton = UIBarButtonItem(image: UIImage(systemName: "message.badge.filled.fill"), style: .plain, target: self, action: #selector(onChatButtonTapped))
+                    
+        navigationItem.rightBarButtonItems = [logoutIcon, chatButton]
+        
+        ordersListView.tableViewOrders.delegate = self
+        ordersListView.tableViewOrders.dataSource = self
+        
+        print("Printing in view did load")
+        ordersListView.tableViewOrders.reloadData()
+        print("Printing in view did load after reload")
+    }
+    
     func addSupportContactForCurrentUser() {
         guard let currentUser = Auth.auth().currentUser else {
             return
@@ -71,99 +140,19 @@ class ViewController: UIViewController {
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        
-        super.viewWillAppear(animated)
-        //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
-        handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
-            if user == nil{
-                self.currentUser = nil
-                print("Not logged")
-                self.goToLoginScreen()
-            }else{
-                print("Logged in already")
-                self.currentUser = user
-                self.addSupportContactForCurrentUser()
-                //MARK: Observe Firestore database to display the contacts list...
-                self.database.collection("users")
-                    .document((self.currentUser?.email)!)
-                    .collection("orders")
-                    .addSnapshotListener(includeMetadataChanges: false, listener: {querySnapshot, error in
-                        if let documents = querySnapshot?.documents{
-                            self.orders.removeAll()
-                            for document in documents{
-                                do{
-                                    let eachOrder = try document.data(as: UploadOrder.self)
-                                    self.orders.append(eachOrder)
-                                }catch{
-                                    print(error)
-                                }
-                            }
-                            self.orders.sort(by: {$1.currentTime < $0.currentTime})
-                            self.ordersListView.tableViewOrders.reloadData()
-//                            self.ordersListView.restartLight()
-                        }
-                    })
-            }
-        }
-        print("Came back to orders screen")
-        
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        title = "Orders"
-        
-        ordersListView.tableViewOrders.separatorStyle = .none
-        ordersListView.tableViewOrders.backgroundColor = Utilities.beigeColor
-        
-        ordersListView.buttonAdd.addTarget(self, action: #selector(onButtonCreateOrderTapped), for: .touchUpInside)
-        
-//        orders.append(IndividualOrder(name: "Order_1", location: "Allston 1"))
-//        orders.append(IndividualOrder(name: "Order_2", location: "Allston 2"))
-//        orders.append(IndividualOrder(name: "Order_3", location: "Allston 3"))
-//        orders.append(IndividualOrder(name: "Order_4", location: "Allston 4"))
-        
-        let logoutIcon = UIBarButtonItem(
-                        image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"),
-                        style: .plain,
-                        target: self,
-                        action: #selector(logoutButtonTapped)
-                    )
-        
-        let chatButton = UIBarButtonItem(image: UIImage(systemName: "message.badge.filled.fill"), style: .plain, target: self, action: #selector(onChatButtonTapped))
-//        let powerButton = UIBarButtonItem(image: UIImage(systemName: "rectangle.portrait.and.arrow.forward"), style: .plain, target: self, action: #selector(onLogoutButtonTapped))
-//        
-        
-//        navigationItem.rightBarButtonItems = [powerButton, profileButton]
-                    
-        navigationItem.rightBarButtonItems = [logoutIcon, chatButton]
-        //navigationController?.navigationBar.prefersLargeTitles = true
-        
-        ordersListView.tableViewOrders.delegate = self
-        ordersListView.tableViewOrders.dataSource = self
-        
-        print("Printing in view did load")
-        ordersListView.tableViewOrders.reloadData()
-        print("Printing in view did load after reload")
-                
-//        view.bringSubviewToFront(chatScreen.floatingButtonAddContact)
-//        
-//        chatScreen.tableViewContacts.delegate = self
-//        chatScreen.tableViewContacts.dataSource = self
-//        
-//        //MARK: removing the separator line...
-//        chatScreen.tableViewContacts.separatorStyle = .none
-//        chatScreen.floatingButtonAddContact.addTarget(self, action: #selector(addContactButtonTapped), for: .touchUpInside)
-    }
-    
     @objc func onChatButtonTapped(){
-        // Aadesh's code
         let supportViewController = SupportViewController()
         supportViewController.senderID = self.currentUser?.email
         supportViewController.receiverID = "support@medlivery.com"
         supportViewController.loadAllMessages()
         self.navigationController?.pushViewController(supportViewController, animated: true)
+    }
+    @objc func handleAppWillEnterForeground() {
+        ordersListView.tableViewOrders.reloadData()
+    }
+        
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     @objc func logoutButtonTapped(){
@@ -190,14 +179,9 @@ class ViewController: UIViewController {
     }
     
     @objc func onButtonCreateOrderTapped(){
-//        let orderDetailsController = OrderDetailsController()
-//        //orderDetailsController.currentUser = self.currentUser
-//        navigationController?.pushViewController(orderDetailsController, animated: true)
-        
         let createOrderController = CreateOrderController()
         createOrderController.delegate = self
         createOrderController.currentUser = self.currentUser
-        //orderDetailsController.currentUser = self.currentUser
         navigationController?.pushViewController(createOrderController, animated: true)
     }
     
@@ -224,13 +208,21 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "orders", for: indexPath) as! OrdersTableViewCell
         cell.labelName.text = orders[indexPath.row].location
         cell.labelDate.text = "\(orders[indexPath.row].currentTime)"
-        if (indexPath.row == 0){
-            cell.startBlinking()
-            cell.lightView.backgroundColor = .red
-        }
-        else {
-            cell.lightView.backgroundColor = .green
-            cell.lightView.alpha = 1
+        print(orders[indexPath.row].currentTime)
+        if let timeDifference = Utilities.getTimeDifference(fromTimeString: orders[indexPath.row].currentTime) {
+            print(timeDifference)
+            if (timeDifference < 16200){
+                cell.lightView.image = UIImage(systemName: "truck.box.badge.clock.fill")
+                cell.lightView.tintColor = .black
+                cell.startBlinking()
+            }
+            else {
+                cell.lightView.image = UIImage(systemName: "checkmark.circle.fill")
+                cell.lightView.tintColor = .systemGreen
+                cell.lightView.alpha = 1
+            }
+        } else {
+            print("Invalid time string format")
         }
         return cell
     }
@@ -242,8 +234,6 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func onOrdersSelect(indexRow: Int, uploadOrder: UploadOrder) {
         let orderDetailsController = OrderDetailsController()
-                
-        
         
         let userData = self.database.collection("users").document((self.currentUser?.email)!)
 

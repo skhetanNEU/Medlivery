@@ -12,7 +12,7 @@ class OrdersTableViewCell: UITableViewCell {
     var wrapperCellView: UIView!
     var labelName: UILabel!
     var labelDate: UILabel!
-    var lightView: UIView!
+    var lightView: UIImageView!
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,7 +25,7 @@ class OrdersTableViewCell: UITableViewCell {
         
         initConstraints()
         
-//        startBlinking()
+        startBlinking()
     }
     
     required init?(coder: NSCoder) {
@@ -65,9 +65,11 @@ class OrdersTableViewCell: UITableViewCell {
     }
     
     func setupLightView(){
-        lightView = UIView()
-        lightView.backgroundColor = .red // Change color as needed
-        lightView.layer.cornerRadius = 5
+        lightView = UIImageView()
+        lightView.image = UIImage(systemName: "truck.box.badge.clock.fill")
+        lightView.tintColor = .black
+//        lightView.backgroundColor = .red // Change color as needed
+//        lightView.layer.cornerRadius = 5
         lightView.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(lightView)
     }
@@ -124,6 +126,7 @@ class OrdersTableViewCell: UITableViewCell {
     func startBlinking() {
         UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse, .repeat], animations: {
             self.lightView.alpha = self.lightView.alpha == 1 ? 0 : 1
+            //self.lightView.alpha = 0.5
         }, completion: nil)
     }
     
