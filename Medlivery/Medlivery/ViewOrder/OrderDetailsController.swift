@@ -68,10 +68,7 @@ class OrderDetailsController: UIViewController {
         }
         
         if let unwrappedPhotoURL = orderDetails?.photoURL{
-            
-//            orderDetailsView.labelCityState.text = unwrappedPhotoURL
-            
-            print(unwrappedPhotoURL)
+                        
             self.orderDetailsView.imagePrescription.loadRemoteImage(from: unwrappedPhotoURL)
             
         }

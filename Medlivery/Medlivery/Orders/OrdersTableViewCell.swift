@@ -25,7 +25,7 @@ class OrdersTableViewCell: UITableViewCell {
         
         initConstraints()
         
-        startBlinking()
+//        startBlinking()
     }
     
     required init?(coder: NSCoder) {
@@ -123,17 +123,15 @@ class OrdersTableViewCell: UITableViewCell {
     
     func startBlinking() {
         UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse, .repeat], animations: {
-            self.lightView.alpha = 0.1
-            self.wrapperCellView.bringSubviewToFront(self.lightView)
-            print("Starting animation")
+            self.lightView.alpha = self.lightView.alpha == 1 ? 0 : 1
         }, completion: nil)
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        lightView.layer.removeAllAnimations()
-        print("Reusing cell")
-        startBlinking()
-    }
+//    override func prepareForReuse() {
+//        super.prepareForReuse()
+//        lightView.layer.removeAllAnimations()
+//        print("Reusing cell")
+//        startBlinking()
+//    }
 
 }

@@ -73,10 +73,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        print("View will appear called")
         super.viewWillAppear(animated)
-        print("Came back to orders screen Top")
-        
         //MARK: handling if the Authentication state is changed (sign in, sign out, register)...
         handleAuth = Auth.auth().addStateDidChangeListener{ auth, user in
             if user == nil{
@@ -104,7 +101,7 @@ class ViewController: UIViewController {
                             }
                             self.orders.sort(by: {$1.currentTime < $0.currentTime})
                             self.ordersListView.tableViewOrders.reloadData()
-                            self.ordersListView.restartLight()
+//                            self.ordersListView.restartLight()
                         }
                     })
             }
@@ -211,12 +208,8 @@ class ViewController: UIViewController {
     
     //MARK: got the new contacts back and delegated to ViewController...
     func delegateOnCreateOrder(uploadOrders: UploadOrder){
-        
-        print("Delegate called successfully")
         orders.append(uploadOrders)
         ordersListView.tableViewOrders.reloadData()
-        print("Delegate emded successfully")
-
     }
 
 }
@@ -231,15 +224,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "orders", for: indexPath) as! OrdersTableViewCell
         cell.labelName.text = orders[indexPath.row].location
         cell.labelDate.text = "\(orders[indexPath.row].currentTime)"
+        if (indexPath.row == 0){
+            cell.startBlinking()
+            cell.lightView.backgroundColor = .red
+        }
+        else {
+            cell.lightView.backgroundColor = .green
+            cell.lightView.alpha = 1
+        }
         return cell
     }
     
     //MARK: deal with user interaction with a cell...
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(self.orders[indexPath.row])
         onOrdersSelect(indexRow: indexPath.row, uploadOrder: self.orders[indexPath.row])
-
-        
     }
     
     func onOrdersSelect(indexRow: Int, uploadOrder: UploadOrder) {
@@ -273,19 +271,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
                 print("Document data is empty")
             }
         }
-        
-        
-        
-        
-//        let individual = IndividualOrderDetails(name: self.currentUser?.displayName, email: currentUser?.email, phone: currentUser?.phoneNumber, location: uploadOrder.location, currentDate: uploadOrder.currentTime, address: currentUser.address, cityState: <#T##String#>)
-        
-        
-        // create object of Individual Order Details
-        
-//        orderDetailsController.individualOrderDetails = individualOrderDetails
-//        eachController.delegate = self
-        
-        
+
     }
 }
 
