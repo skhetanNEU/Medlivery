@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		212E12EE2BCA0DD400783F71 /* SupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E12ED2BCA0DD400783F71 /* SupportTableViewCell.swift */; };
+		212E12F02BCA0E1000783F71 /* SupportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E12EF2BCA0E1000783F71 /* SupportView.swift */; };
+		212E12F22BCA0E4600783F71 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E12F12BCA0E4600783F71 /* SupportViewController.swift */; };
+		212E12F42BCA0E6400783F71 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E12F32BCA0E6400783F71 /* Message.swift */; };
+		212E12F62BCA0EF900783F71 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 212E12F52BCA0EF900783F71 /* Contact.swift */; };
 		21849B552BC0EC2700509724 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21849B542BC0EC2700509724 /* MapViewController.swift */; };
 		21849B582BC0EC8600509724 /* CustomPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21849B572BC0EC8600509724 /* CustomPresentationController.swift */; };
 		21849B5C2BC0ED5A00509724 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21849B5B2BC0ED5A00509724 /* MapView.swift */; };
@@ -53,6 +58,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		212E12ED2BCA0DD400783F71 /* SupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportTableViewCell.swift; sourceTree = "<group>"; };
+		212E12EF2BCA0E1000783F71 /* SupportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportView.swift; sourceTree = "<group>"; };
+		212E12F12BCA0E4600783F71 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		212E12F32BCA0E6400783F71 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		212E12F52BCA0EF900783F71 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		21849B542BC0EC2700509724 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		21849B572BC0EC8600509724 /* CustomPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPresentationController.swift; sourceTree = "<group>"; };
 		21849B5B2BC0ED5A00509724 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
@@ -111,6 +121,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		212E12F72BCA0F1900783F71 /* Support Screen */ = {
+			isa = PBXGroup;
+			children = (
+				212E12EF2BCA0E1000783F71 /* SupportView.swift */,
+				212E12ED2BCA0DD400783F71 /* SupportTableViewCell.swift */,
+				212E12F12BCA0E4600783F71 /* SupportViewController.swift */,
+			);
+			path = "Support Screen";
+			sourceTree = "<group>";
+		};
 		21849B562BC0EC3200509724 /* Map Screen */ = {
 			isa = PBXGroup;
 			children = (
@@ -175,6 +195,9 @@
 		3F9A1F212BAF5AD200DBE7A7 /* Medlivery */ = {
 			isa = PBXGroup;
 			children = (
+				212E12F32BCA0E6400783F71 /* Message.swift */,
+				212E12F52BCA0EF900783F71 /* Contact.swift */,
+				212E12F72BCA0F1900783F71 /* Support Screen */,
 				EFFCBA352BC9C08200CEB629 /* DataModels */,
 				EFFCBA2F2BC5E14B00CEB629 /* UtilityStructs */,
 				3F9A1F222BAF5AD200DBE7A7 /* AppDelegate.swift */,
@@ -328,6 +351,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				212E12F62BCA0EF900783F71 /* Contact.swift in Sources */,
 				3F9F7F3C2BC194BA00F357BE /* ViewController.swift in Sources */,
 				21849B552BC0EC2700509724 /* MapViewController.swift in Sources */,
 				3F9F7F3D2BC194BA00F357BE /* OrdersTableViewCell.swift in Sources */,
@@ -335,6 +359,7 @@
 				EFFCBA392BC9F94300CEB629 /* CreateOrderFirebaseManager.swift in Sources */,
 				21849B5E2BC0EDB500509724 /* LocationManager.swift in Sources */,
 				3F7F85E42BBDEB7600C67E00 /* RegisterUserView.swift in Sources */,
+				212E12F42BCA0E6400783F71 /* Message.swift in Sources */,
 				3F7F85F52BBDEEA500C67E00 /* ProgressSpinnerViewController.swift in Sources */,
 				3F9A1F232BAF5AD200DBE7A7 /* AppDelegate.swift in Sources */,
 				21849B702BC0EFE000509724 /* SearchTableViewManager.swift in Sources */,
@@ -351,11 +376,14 @@
 				21849B602BC0EDDA00509724 /* MapAnnotationDelegate.swift in Sources */,
 				3F7F85E22BBDEB6700C67E00 /* RegisterUserViewController.swift in Sources */,
 				21849B622BC0EE0700509724 /* Configs.swift in Sources */,
+				212E12EE2BCA0DD400783F71 /* SupportTableViewCell.swift in Sources */,
+				212E12F02BCA0E1000783F71 /* SupportView.swift in Sources */,
 				21849B642BC0EE2000509724 /* NotificationNames.swift in Sources */,
 				21849B582BC0EC8600509724 /* CustomPresentationController.swift in Sources */,
 				3F9F7F422BC194D800F357BE /* OrderDetailsController.swift in Sources */,
 				3F9F7F372BC194A700F357BE /* CreateOrderView.swift in Sources */,
 				3F7F85F72BBDEED400C67E00 /* ProgressSpinnerDelegate.swift in Sources */,
+				212E12F22BCA0E4600783F71 /* SupportViewController.swift in Sources */,
 				3F56DFFC2BC0D4050083FBB6 /* Utilities.swift in Sources */,
 				3F9A1F252BAF5AD200DBE7A7 /* SceneDelegate.swift in Sources */,
 				EFFCBA332BC612EE00CEB629 /* IndividualOrderDetails.swift in Sources */,

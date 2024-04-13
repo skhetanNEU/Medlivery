@@ -21,6 +21,55 @@ class ViewController: UIViewController {
         view = ordersListView
     }
     
+    func addSupportContactForCurrentUser() {
+        guard let currentUser = Auth.auth().currentUser else {
+            print("Chutiye")
+            return
+        }
+        
+        // Define the support contact
+        let supportContact = Contact(name: "Support", email: "support@medlivery.com", phone: 0)
+        
+        // Add the support contact to the current user's contacts collection
+        let currentUserContactsRef = Firestore.firestore().collection("users").document(currentUser.email!).collection("support").document(supportContact.email)
+        currentUserContactsRef.getDocument { (document, error) in
+            guard let document = document, !document.exists else {
+                // Document already exists, do not overwrite
+                print("Support contact already exists for current user")
+                return
+            }
+            
+            // Document does not exist, add support contact
+            currentUserContactsRef.setData(supportContact.dictionary) { error in
+                if let error = error {
+                    print("Error adding support contact for current user: \(error.localizedDescription)")
+                } else {
+                    print("Support contact added successfully for current user")
+                }
+            }
+        }
+        
+        // Add the current user to the "customers" collection of the support contact
+        let supportUserContactsRef = Firestore.firestore().collection("users").document("support@medlivery.com").collection("customers").document(currentUser.email!)
+        supportUserContactsRef.getDocument { (document, error) in
+            guard let document = document, !document.exists else {
+                // Document already exists, do not overwrite
+                print("Current user already exists in support contact's customers")
+                return
+            }
+            
+            // Document does not exist, add current user
+            let currentUserContact = Contact(name: currentUser.displayName ?? "", email: currentUser.email ?? "", phone: 0)
+            supportUserContactsRef.setData(currentUserContact.dictionary) { error in
+                if let error = error {
+                    print("Error adding current user to support contact's customers: \(error.localizedDescription)")
+                } else {
+                    print("Current user added successfully to support contact's customers")
+                }
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         
         print("View will appear called")
@@ -35,6 +84,7 @@ class ViewController: UIViewController {
             }else{
                 print("Logged in already")
                 self.currentUser = user
+                self.addSupportContactForCurrentUser()
                 //MARK: Observe Firestore database to display the contacts list...
                 self.database.collection("users")
                     .document((self.currentUser?.email)!)
@@ -105,6 +155,11 @@ class ViewController: UIViewController {
     
     @objc func onChatButtonTapped(){
         // Aadesh's code
+        let supportViewController = SupportViewController()
+        supportViewController.senderID = self.currentUser?.email
+        supportViewController.receiverID = "support@medlivery.com"
+        supportViewController.loadAllMessages()
+        self.navigationController?.pushViewController(supportViewController, animated: true)
     }
     
     @objc func logoutButtonTapped(){
