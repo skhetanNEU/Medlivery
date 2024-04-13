@@ -31,7 +31,6 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         title = "Search in Map"
-        navigationController?.navigationBar.prefersLargeTitles = true
         
         mapView.buttonCurrentLocation.addTarget(self, action: #selector(onButtonCurrentLocationTapped), for: .touchUpInside)
                 
