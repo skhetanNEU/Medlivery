@@ -44,9 +44,25 @@ class OrderDetailsController: UIViewController {
             
         }
         
-        if let unwrappedLocation = orderDetails?.location{
+        if let unwrappedStoreName = orderDetails?.storeName{
             
-            orderDetailsView.storeLocation.text = unwrappedLocation
+            orderDetailsView.storeName.text = unwrappedStoreName
+            
+        }
+        if let unwrappedStoreAdd = orderDetails?.storeAddress{
+            
+            orderDetailsView.storeAddress.text = unwrappedStoreAdd
+            
+        }
+        if let unwrappedStoreCity = orderDetails?.storeCityState{
+            
+            orderDetailsView.storeCityState.text = unwrappedStoreCity
+            
+        }
+        
+        if let unwrappedStoreZip = orderDetails?.storeZip{
+            
+            orderDetailsView.storeZip.text = unwrappedStoreZip
             
         }
         if let unwrappedDate = orderDetails?.currentDate{

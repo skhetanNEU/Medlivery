@@ -55,8 +55,15 @@ class CreateOrderController: UIViewController {
     
     func setPlaceName() {
         createOrderView.textFieldLocation.text = self.storeName
+        
+//        print(storeName)
+//        print(storeAddressLine1)
+//        print(storeAddressLine2)
+//        print(storeAddressCity)
+//        print(storeAddressState)
+//        print(storeAddressZip)
+//        print(storeAddressCountry)
     }
-    
     
     func getMenuImagePicker() -> UIMenu{
         let menuItems = [
@@ -90,8 +97,6 @@ class CreateOrderController: UIViewController {
         
         photoPicker.delegate = self
         present(photoPicker, animated: true, completion: nil)
-
-        
     }
     
     @objc func onAddOrderButtonTapped(){
@@ -123,8 +128,13 @@ class CreateOrderController: UIViewController {
             return
         }
         
+        
         let collectionOrders = database.collection("users").document(userEmail).collection("orders")
-        let uploadOrder = UploadOrder(location: individualOrder.location, currentTime: individualOrder.currentTime, photoURL: self.storedProfilePhotoURL)
+        let storeAddress = "\(self.storeAddressLine1 ?? "") \(self.storeAddressLine2 ?? "")"
+        let storeCityState = "\(self.storeAddressCity ?? "") \(self.storeAddressState ?? "")"
+
+        
+        let uploadOrder = UploadOrder(storeName: self.storeName ?? "", storeAddress: storeAddress, storeCityState: storeCityState, zip: self.storeAddressZip ?? "", currentTime: individualOrder.currentTime, photoURL: self.storedProfilePhotoURL)
         
         
         do {

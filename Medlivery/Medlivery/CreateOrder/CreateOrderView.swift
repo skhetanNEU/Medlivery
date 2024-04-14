@@ -9,6 +9,7 @@ import UIKit
 
 class CreateOrderView: UIView {
     
+    var contentWrapper:UIScrollView!
     var labelLocation: UILabel!
     var textFieldLocation: UITextField!
     var navigationButton: UIButton!
@@ -21,6 +22,8 @@ class CreateOrderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = Utilities.beigeColor
+        
+        setupContentWrapper()
         setupLabelLocation()
         setupTextFieldLocation()
         setupNavigationIconButton()
@@ -36,13 +39,20 @@ class CreateOrderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupContentWrapper(){
+        contentWrapper = UIScrollView()
+        contentWrapper.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(contentWrapper)
+    }
+    
+    
     func setupLabelLocation(){
         labelLocation = UILabel()
         labelLocation.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         labelLocation.text = "Location"
 //        labelName.font = UIFont.boldSystemFont(ofSize: 16)
         labelLocation.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelLocation)
+        contentWrapper.addSubview(labelLocation)
     }
     
     func setupTextFieldLocation(){
@@ -51,7 +61,7 @@ class CreateOrderView: UIView {
         textFieldLocation.borderStyle = .roundedRect
         textFieldLocation.translatesAutoresizingMaskIntoConstraints = false
         textFieldLocation.widthAnchor.constraint(equalToConstant: 320).isActive = true
-        self.addSubview(textFieldLocation)
+        contentWrapper.addSubview(textFieldLocation)
     }
     
     func setupNavigationIconButton() {
@@ -60,7 +70,7 @@ class CreateOrderView: UIView {
         navigationButton.setImage(navigationIcon, for: .normal)
         navigationButton.tintColor = .systemBlue
         navigationButton.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(navigationButton)
+        contentWrapper.addSubview(navigationButton)
     }
     
     func setupLabelUploadPrescription(){
@@ -69,7 +79,7 @@ class CreateOrderView: UIView {
         labelUploadPrescription.text = "Upload Prescription"
 //        labelUploadPrescription.font = UIFont.boldSystemFont(ofSize: 16)
         labelUploadPrescription.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelUploadPrescription)
+        contentWrapper.addSubview(labelUploadPrescription)
     }
     
     func setupButtonUploadPrescription(){
@@ -88,7 +98,7 @@ class CreateOrderView: UIView {
 
         buttonUploadPrescription.translatesAutoresizingMaskIntoConstraints = false
 
-        self.addSubview(buttonUploadPrescription)
+        contentWrapper.addSubview(buttonUploadPrescription)
     }
     
 
@@ -100,7 +110,7 @@ class CreateOrderView: UIView {
         buttonCreateOrder.layer.cornerRadius = 16 // Adjust corner radius as needed
         buttonCreateOrder.setTitleColor(.white, for: .normal)
         buttonCreateOrder.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(buttonCreateOrder)
+        contentWrapper.addSubview(buttonCreateOrder)
     }
     
     
@@ -108,30 +118,36 @@ class CreateOrderView: UIView {
     func initConstraints(){
         NSLayoutConstraint.activate([
             
-            labelLocation.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 28),
-            labelLocation.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 30),
+            contentWrapper.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            contentWrapper.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            contentWrapper.widthAnchor.constraint(equalTo:self.safeAreaLayoutGuide.widthAnchor),
+            contentWrapper.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor),
+            
+            labelLocation.topAnchor.constraint(equalTo: contentWrapper.topAnchor, constant: 28),
+            labelLocation.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 30),
             
             textFieldLocation.topAnchor.constraint(equalTo: labelLocation.bottomAnchor, constant: 16),
-            textFieldLocation.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 30),
-            textFieldLocation.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -60),
+            textFieldLocation.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 30),
+            textFieldLocation.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -60),
             
             navigationButton.topAnchor.constraint(equalTo: textFieldLocation.topAnchor),
             navigationButton.leadingAnchor.constraint(equalTo: textFieldLocation.trailingAnchor, constant: 8),
-            navigationButton.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -30),
+            navigationButton.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -30),
             navigationButton.heightAnchor.constraint(equalTo: textFieldLocation.heightAnchor),
 //            navigationButton.widthAnchor.constraint(equalTo: navigationButton.heightAnchor),
             
             labelUploadPrescription.topAnchor.constraint(equalTo: textFieldLocation.bottomAnchor, constant: 24),
-            labelUploadPrescription.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 30),
+            labelUploadPrescription.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 30),
             
             buttonUploadPrescription.topAnchor.constraint(equalTo: labelUploadPrescription.bottomAnchor, constant: 16),
-            buttonUploadPrescription.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            buttonUploadPrescription.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
 //            buttonUploadPrescription.widthAnchor.constraint(equalToConstant: 100),
 //            buttonUploadPrescription.heightAnchor.constraint(equalToConstant: 100),
            
-            buttonCreateOrder.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16),
-            buttonCreateOrder.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 12),
-            buttonCreateOrder.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -12),
+            buttonCreateOrder.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 12),
+            buttonCreateOrder.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -12),
+            buttonCreateOrder.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor),
+
         ])
     }
     

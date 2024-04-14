@@ -9,12 +9,16 @@ import UIKit
 
 class OrderDetailsView: UIView {
 //    var imageContact: UIImageView!
+    var contentWrapper:UIScrollView!
     var labelName: UILabel!
     var labelEmail: UILabel!
     var labelPhone: UILabel!
     var labelStoreAddressTitle: UILabel!
 //    var location: UILabel!
-    var storeLocation: UILabel!
+    var storeName: UILabel!
+    var storeAddress: UILabel!
+    var storeCityState: UILabel!
+    var storeZip: UILabel!
     var dateOfOrder: UILabel!
     var labelAddressTitle: UILabel!
     var labelAddress: UILabel!
@@ -26,11 +30,16 @@ class OrderDetailsView: UIView {
         super.init(frame: frame)
         self.backgroundColor = Utilities.beigeColor
         
+        setupContentWrapper()
         setupLabelName()
         setupLabelEmail()
         setupLabelPhone()
         setupLabelStoreAddressTitle()
-        setupStoreLocation()
+        setupStoreName()
+        setupStoreAddress()
+        setupStoreCityState()
+        setupStoreZip()
+        
         setupDateOfOrder()
         setupLabelAddressTitle()
         setupLabelAddress()
@@ -45,6 +54,12 @@ class OrderDetailsView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func setupContentWrapper(){
+        contentWrapper = UIScrollView()
+        contentWrapper.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(contentWrapper)
+    }
+    
     //MARK: initializing the UI elements...
     func setupLabelName(){
         labelName = UILabel()
@@ -52,7 +67,7 @@ class OrderDetailsView: UIView {
         labelName.text = "John Doe"
         labelName.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         labelName.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelName)
+        contentWrapper.addSubview(labelName)
     }
     
     func setupLabelEmail(){
@@ -61,7 +76,7 @@ class OrderDetailsView: UIView {
         labelEmail.text = "john@gmail.com"
 //        labelEmail.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         labelEmail.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelEmail)
+        contentWrapper.addSubview(labelEmail)
     }
     
     func setupLabelPhone(){
@@ -69,7 +84,7 @@ class OrderDetailsView: UIView {
         labelPhone.textAlignment = .left
         labelPhone.text = "+1(857)492-6666"
         labelPhone.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelPhone)
+        contentWrapper.addSubview(labelPhone)
     }
     
     func setupLabelStoreAddressTitle(){
@@ -78,16 +93,46 @@ class OrderDetailsView: UIView {
         labelStoreAddressTitle.text = "Store Address:"
         labelStoreAddressTitle.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         labelStoreAddressTitle.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelStoreAddressTitle)
+        contentWrapper.addSubview(labelStoreAddressTitle)
     }
         
-    func setupStoreLocation(){
-        storeLocation = UILabel()
-        storeLocation.textAlignment = .left
+    func setupStoreName(){
+        storeName = UILabel()
+        storeName.textAlignment = .left
         
-        storeLocation.text = "CVS, Brighton"
-        storeLocation.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(storeLocation)
+//        storeName.text = "CVS, Brighton"
+        storeName.translatesAutoresizingMaskIntoConstraints = false
+        contentWrapper.addSubview(storeName)
+    }
+    
+    func setupStoreAddress() {
+        storeAddress = UILabel()
+        storeAddress.textAlignment = .left
+        
+//        storeAddress.text = "CVS, Brighton"
+        storeAddress.translatesAutoresizingMaskIntoConstraints = false
+        contentWrapper.addSubview(storeAddress)
+        
+    }
+    
+    func setupStoreCityState() {
+        storeCityState = UILabel()
+        storeCityState.textAlignment = .left
+        
+//        storeName.text = "CVS, Brighton"
+        storeCityState.translatesAutoresizingMaskIntoConstraints = false
+        contentWrapper.addSubview(storeCityState)
+        
+    }
+    
+    func setupStoreZip() {
+        storeZip = UILabel()
+        storeZip.textAlignment = .left
+        
+//        storeName.text = "CVS, Brighton"
+        storeZip.translatesAutoresizingMaskIntoConstraints = false
+        contentWrapper.addSubview(storeZip)
+        
     }
     
     func setupDateOfOrder(){
@@ -96,7 +141,7 @@ class OrderDetailsView: UIView {
         
         dateOfOrder.text = "05/22/2024 13:22"
         dateOfOrder.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(dateOfOrder)
+        contentWrapper.addSubview(dateOfOrder)
     }
     
     
@@ -106,7 +151,7 @@ class OrderDetailsView: UIView {
         labelAddressTitle.text = "Delivery Address:"
         labelAddressTitle.font = UIFont.systemFont(ofSize: 18, weight: .bold)
         labelAddressTitle.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelAddressTitle)
+        contentWrapper.addSubview(labelAddressTitle)
     }
     
     
@@ -116,7 +161,7 @@ class OrderDetailsView: UIView {
         
         labelAddress.text = "75 St. Alphonsus Street"
         labelAddress.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelAddress)
+        contentWrapper.addSubview(labelAddress)
     }
     
     func setupLabelCityState(){
@@ -124,7 +169,7 @@ class OrderDetailsView: UIView {
         labelCityState.textAlignment = .left
         labelCityState.text = "Quincy, MA"
         labelCityState.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelCityState)
+        contentWrapper.addSubview(labelCityState)
     }
     
     func setupLabelZip(){
@@ -132,7 +177,7 @@ class OrderDetailsView: UIView {
         labelZip.textAlignment = .left
         labelZip.text = "02134"
         labelZip.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelZip)
+        contentWrapper.addSubview(labelZip)
     }
     
     func setupImagePrescription(){
@@ -142,47 +187,63 @@ class OrderDetailsView: UIView {
         imagePrescription.clipsToBounds = true
         imagePrescription.layer.cornerRadius = 10
         imagePrescription.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(imagePrescription)
+        contentWrapper.addSubview(imagePrescription)
     }
     
     //MARK: initializing constraints...
     func initConstraints(){
         NSLayoutConstraint.activate([
             
-            labelName.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 24),
-            labelName.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            //MARK: contentWrapper constraints...
+            contentWrapper.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            contentWrapper.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            contentWrapper.widthAnchor.constraint(equalTo:self.safeAreaLayoutGuide.widthAnchor),
+            contentWrapper.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor),
+            
+            labelName.topAnchor.constraint(equalTo: contentWrapper.topAnchor, constant: 24),
+            labelName.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
             labelEmail.topAnchor.constraint(equalTo: labelName.bottomAnchor, constant: 12),
-            labelEmail.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            labelEmail.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
             labelPhone.topAnchor.constraint(equalTo: labelEmail.bottomAnchor, constant: 4),
-            labelPhone.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            labelPhone.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
             labelStoreAddressTitle.topAnchor.constraint(equalTo: labelPhone.bottomAnchor, constant: 16),
-            labelStoreAddressTitle.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            labelStoreAddressTitle.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
-            storeLocation.topAnchor.constraint(equalTo: labelStoreAddressTitle.bottomAnchor, constant: 12),
-            storeLocation.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            storeName.topAnchor.constraint(equalTo: labelStoreAddressTitle.bottomAnchor, constant: 12),
+            storeName.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
-            dateOfOrder.topAnchor.constraint(equalTo: storeLocation.bottomAnchor, constant: 4),
-            dateOfOrder.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            storeAddress.topAnchor.constraint(equalTo: storeName.bottomAnchor, constant: 4),
+            storeAddress.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
+            
+            storeCityState.topAnchor.constraint(equalTo: storeAddress.bottomAnchor, constant: 4),
+            storeCityState.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
+            
+            storeZip.topAnchor.constraint(equalTo: storeCityState.bottomAnchor, constant: 4),
+            storeZip.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
+            
+            dateOfOrder.topAnchor.constraint(equalTo: storeZip.bottomAnchor, constant: 4),
+            dateOfOrder.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
             labelAddressTitle.topAnchor.constraint(equalTo: dateOfOrder.bottomAnchor, constant: 16),
-            labelAddressTitle.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            labelAddressTitle.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
             labelAddress.topAnchor.constraint(equalTo: labelAddressTitle.bottomAnchor, constant: 12),
-            labelAddress.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            labelAddress.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
             labelCityState.topAnchor.constraint(equalTo: labelAddress.bottomAnchor, constant: 4),
-            labelCityState.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            labelCityState.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
             labelZip.topAnchor.constraint(equalTo: labelCityState.bottomAnchor, constant: 4),
-            labelZip.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16),
+            labelZip.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 16),
             
             imagePrescription.topAnchor.constraint(equalTo: labelZip.bottomAnchor, constant: 16),
-            imagePrescription.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            imagePrescription.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
             imagePrescription.heightAnchor.constraint(equalToConstant: 400),
             imagePrescription.widthAnchor.constraint(equalToConstant: 300),
+            imagePrescription.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor)
                         
 
         ])

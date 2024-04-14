@@ -206,7 +206,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "orders", for: indexPath) as! OrdersTableViewCell
-        cell.labelName.text = orders[indexPath.row].location
+        cell.labelName.text = orders[indexPath.row].storeName
         cell.labelDate.text = "\(orders[indexPath.row].currentTime)"
         print(orders[indexPath.row].currentTime)
         if let timeDifference = Utilities.getTimeDifference(fromTimeString: orders[indexPath.row].currentTime) {
@@ -253,7 +253,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             // Access the data from the document snapshot
             if let data = document.data() {
                 // Create an instance of UserInfo struct from the retrieved data
-                orderDetailsController.orderDetails = IndividualOrderDetails(name: data["name"] as! String, email: self.currentUser?.email ?? "", phone: data["phone"] as! String, location: uploadOrder.location, currentDate: uploadOrder.currentTime, address: data["address"] as! String, cityState: data["city"] as! String, photoURL: uploadOrder.photoURL)
+                orderDetailsController.orderDetails = IndividualOrderDetails(name: data["name"] as! String, email: self.currentUser?.email ?? "", phone: data["phone"] as! String, storeName: uploadOrder.storeName, storeAddress: uploadOrder.storeAddress, storeCityState: uploadOrder.storeCityState, storeZip: uploadOrder.zip, currentDate: uploadOrder.currentTime, address: data["address"] as! String, cityState: data["city"] as! String, photoURL: uploadOrder.photoURL)
                 
                 self.navigationController?.pushViewController(orderDetailsController, animated: true)
 
