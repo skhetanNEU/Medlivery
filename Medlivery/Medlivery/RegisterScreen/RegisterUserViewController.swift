@@ -56,6 +56,9 @@ class RegisterUserViewController: UIViewController {
                         showInvalidEmailAlert()
                         return
                     }
+                    if(emailText == "support@medlivery.com"){
+                        showRestrictedEmailAlert()
+                    }
                     email = emailText
                 }
                 else{
@@ -215,9 +218,13 @@ class RegisterUserViewController: UIViewController {
     
     func showInvalidEmailAlert(){
         let alert = UIAlertController(title: "Error!", message: "Email is invalid or contains uppercase letters!!", preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
+        self.present(alert, animated: true)
+    }
+    
+    func showRestrictedEmailAlert(){
+        let alert = UIAlertController(title: "Error!", message: "This email is restricted", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
         self.present(alert, animated: true)
     }
     
