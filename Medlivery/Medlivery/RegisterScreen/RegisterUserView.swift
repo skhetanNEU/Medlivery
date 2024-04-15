@@ -9,6 +9,7 @@ import UIKit
 
 class RegisterUserView: UIView {
     
+    var contentWrapper:UIScrollView!
     var textFieldName: UITextField!
     var textFieldEmail: UITextField!
     var textFieldPhoneNumber: UITextField!
@@ -25,6 +26,7 @@ class RegisterUserView: UIView {
         
         self.backgroundColor = Utilities.beigeColor
         
+        setupContentWrapper()
         setupTextFieldName()
         setupTextFieldEmail()
         setupTextFieldPhoneNumber()
@@ -37,12 +39,18 @@ class RegisterUserView: UIView {
         initConstraints()
     }
     
+    func setupContentWrapper(){
+        contentWrapper = UIScrollView()
+        contentWrapper.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(contentWrapper)
+    }
+    
     func setupTextFieldName(){
         textFieldName = UITextField()
         textFieldName.placeholder = "Name"
         textFieldName.borderStyle = .roundedRect
         textFieldName.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(textFieldName)
+        contentWrapper.addSubview(textFieldName)
     }
     
     func setupTextFieldEmail(){
@@ -52,7 +60,7 @@ class RegisterUserView: UIView {
         textFieldEmail.autocapitalizationType = .none // Disable autocapitalization
         textFieldEmail.autocorrectionType = .no // Disable autocorrection
         textFieldEmail.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(textFieldEmail)
+        contentWrapper.addSubview(textFieldEmail)
     }
     
     func setupTextFieldPhoneNumber(){
@@ -61,7 +69,7 @@ class RegisterUserView: UIView {
         textFieldPhoneNumber.translatesAutoresizingMaskIntoConstraints = false
         textFieldPhoneNumber.borderStyle = .roundedRect
         textFieldPhoneNumber.keyboardType = .phonePad
-        self.addSubview(textFieldPhoneNumber)
+        contentWrapper.addSubview(textFieldPhoneNumber)
     }
     
     func setupTextFieldAddress(){
@@ -69,7 +77,7 @@ class RegisterUserView: UIView {
         textFieldAddress.placeholder = "Address"
         textFieldAddress.translatesAutoresizingMaskIntoConstraints = false
         textFieldAddress.borderStyle = .roundedRect
-        self.addSubview(textFieldAddress)
+        contentWrapper.addSubview(textFieldAddress)
     }
     
     func setupTextFieldCity(){
@@ -77,7 +85,7 @@ class RegisterUserView: UIView {
         textFieldCity.placeholder = "City"
         textFieldCity.translatesAutoresizingMaskIntoConstraints = false
         textFieldCity.borderStyle = .roundedRect
-        self.addSubview(textFieldCity)
+        contentWrapper.addSubview(textFieldCity)
     }
     
     func setupTextFieldPassword(){
@@ -88,7 +96,7 @@ class RegisterUserView: UIView {
         textFieldPassword.textContentType = .oneTimeCode
         textFieldPassword.translatesAutoresizingMaskIntoConstraints = false
         
-        self.addSubview(textFieldPassword)
+        contentWrapper.addSubview(textFieldPassword)
     }
     
     func setupTextFieldPasswordRepeat(){
@@ -98,7 +106,7 @@ class RegisterUserView: UIView {
         textFieldPasswordRepeat.isSecureTextEntry = true
         textFieldPasswordRepeat.textContentType = .oneTimeCode
         textFieldPasswordRepeat.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(textFieldPasswordRepeat)
+        contentWrapper.addSubview(textFieldPasswordRepeat)
     }
     
     func setupButtonRegister(){
@@ -110,44 +118,52 @@ class RegisterUserView: UIView {
         buttonRegister.setTitleColor(.white, for: .normal)
         
         buttonRegister.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(buttonRegister)
+        contentWrapper.addSubview(buttonRegister)
     }
     
     func initConstraints(){
         NSLayoutConstraint.activate([
             
-            textFieldName.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 80),
-            textFieldName.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            textFieldName.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            //MARK: contentWrapper constraints...
+            contentWrapper.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            contentWrapper.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            contentWrapper.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            contentWrapper.widthAnchor.constraint(equalTo:self.safeAreaLayoutGuide.widthAnchor),
+            contentWrapper.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor),
+            
+            textFieldName.topAnchor.constraint(equalTo: contentWrapper.topAnchor, constant: 80),
+            textFieldName.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
+            textFieldName.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
             
             textFieldEmail.topAnchor.constraint(equalTo: textFieldName.bottomAnchor, constant: 20),
-            textFieldEmail.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            textFieldEmail.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            textFieldEmail.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
+            textFieldEmail.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
             
             textFieldPhoneNumber.topAnchor.constraint(equalTo: textFieldEmail.bottomAnchor, constant: 20),
-            textFieldPhoneNumber.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            textFieldPhoneNumber.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            textFieldPhoneNumber.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
+            textFieldPhoneNumber.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
             
             textFieldAddress.topAnchor.constraint(equalTo: textFieldPhoneNumber.bottomAnchor, constant: 20),
-            textFieldAddress.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            textFieldAddress.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            textFieldAddress.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
+            textFieldAddress.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
             
             textFieldCity.topAnchor.constraint(equalTo: textFieldAddress.bottomAnchor, constant: 20),
-            textFieldCity.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            textFieldCity.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            textFieldCity.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
+            textFieldCity.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
             
             textFieldPassword.topAnchor.constraint(equalTo: textFieldCity.bottomAnchor, constant: 20),
-            textFieldPassword.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            textFieldPassword.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            textFieldPassword.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
+            textFieldPassword.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
             
             textFieldPasswordRepeat.topAnchor.constraint(equalTo: textFieldPassword.bottomAnchor, constant: 20),
-            textFieldPasswordRepeat.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
-            textFieldPasswordRepeat.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
+            textFieldPasswordRepeat.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
+            textFieldPasswordRepeat.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
             
             
             buttonRegister.topAnchor.constraint(equalTo: textFieldPasswordRepeat.bottomAnchor, constant: 60),
-            buttonRegister.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            buttonRegister.widthAnchor.constraint(equalToConstant: 115)
+            buttonRegister.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
+            buttonRegister.widthAnchor.constraint(equalToConstant: 115),
+            buttonRegister.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor)
         ])
     }
     
