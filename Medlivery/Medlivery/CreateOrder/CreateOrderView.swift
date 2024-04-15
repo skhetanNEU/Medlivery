@@ -141,12 +141,18 @@ class CreateOrderView: UIView {
             
             buttonUploadPrescription.topAnchor.constraint(equalTo: labelUploadPrescription.bottomAnchor, constant: 16),
             buttonUploadPrescription.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
+            buttonUploadPrescription.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor),
+            
 //            buttonUploadPrescription.widthAnchor.constraint(equalToConstant: 100),
 //            buttonUploadPrescription.heightAnchor.constraint(equalToConstant: 100),
            
-            buttonCreateOrder.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 12),
-            buttonCreateOrder.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -12),
-            buttonCreateOrder.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor),
+//            buttonCreateOrder.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 12),
+//            buttonCreateOrder.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -12),
+//            buttonCreateOrder.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor, constant: -16),
+            
+            buttonCreateOrder.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16),
+            buttonCreateOrder.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+            buttonCreateOrder.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -12),
 
         ])
     }
