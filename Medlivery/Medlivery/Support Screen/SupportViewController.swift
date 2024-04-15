@@ -31,8 +31,10 @@ class SupportViewController: UIViewController {
     
     func getBotResponse(message: String) -> String {
         let tempMessage = message.lowercased()
-        let containsNumber = tempMessage.rangeOfCharacter(from: .decimalDigits) != nil
         print("Bot will talk")
+
+        // Regular expression to check for presence of numbers
+        let containsNumber = message.rangeOfCharacter(from: .decimalDigits) != nil
 
         if tempMessage.contains("hello") {
             return "Hey there!"
@@ -44,17 +46,35 @@ class SupportViewController: UIViewController {
             return "I'm fine, how about you?"
         } else if tempMessage.contains("thanks") || tempMessage.contains("thank you") {
             return "You're welcome!"
-        } else if tempMessage.contains("order") || tempMessage.contains("order status"){
+        } else if tempMessage.contains("order") || tempMessage.contains("order status") {
             return "Let me check that for you. Please provide your order number."
         } else if tempMessage.contains("delivery") || tempMessage.contains("delivery time") || tempMessage.contains("delivery status") {
             return "Delivery times vary based on location and current workload. Can you provide your order number for more details?"
         } else if tempMessage.contains("product") || tempMessage.contains("item") || tempMessage.contains("catalog") {
             return "Sure, if there's an issue with the product, please send me the order number so I can process it."
-        } else if containsNumber {
-            return "Thank you providing me with an order number. We will process the same and provide you with an update shortly"
-        }else if tempMessage.contains("update") {
+        } else if tempMessage.contains("update") || tempMessage.contains("progress") {
+            return "Sure, let me check for updates on your request."
+        } else if tempMessage.contains("return") || tempMessage.contains("exchange") {
+            return "Certainly! Please provide your order number and reason for return/exchange."
+        } else if tempMessage.contains("cancel") || tempMessage.contains("refund") {
+            return "I can assist you with that. Could you please provide your order number?"
+        } else if tempMessage.contains("help") || tempMessage.contains("assistance") {
+            return "Of course! What do you need assistance with?"
+        } else if tempMessage.contains("problem") || tempMessage.contains("issue") {
+            return "I'm here to help. Please describe the problem or issue you're facing."
+        } else if tempMessage.contains("recommendation") || tempMessage.contains("suggest") {
+            return "Sure, I can help with that. Could you please specify your preferences or requirements?"
+        } else if tempMessage.contains("pricing") || tempMessage.contains("cost") {
+            return "For pricing information, please visit our website or contact our sales team."
+        } else if tempMessage.contains("availability") || tempMessage.contains("stock") {
+            return "To check product availability, please provide the product name or code."
+        } else if tempMessage.contains("contact") || tempMessage.contains("support") {
+            return "You can contact our support team at support@medlivery.com or call us at +1-800-123-4567."
+        } else if tempMessage.contains("update") {
             return "It seems like your order is still being processed. We at Medlivery, appreciate your patience :) Can I assist you with something else in the meantime?"
-        }else {
+        }else if containsNumber {
+            return "Thank you providing me with the order number. We will process the same and provide you with an update shortly."
+        } else {
             return "I'm sorry, I didn't understand. How can I assist you?"
         }
     }
@@ -95,7 +115,9 @@ class SupportViewController: UIViewController {
             return
         }
         sendMessage(message: text, senderID: currentUserID, receiverID: receiverUserID);
-        botSendMessage(message: getBotResponse(message: text), senderID: receiverUserID, receiverID: currentUserID);
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.botSendMessage(message: self.getBotResponse(message: text), senderID: receiverUserID, receiverID: currentUserID);
+        }
     }
 
     @objc func sendMessage(message: String, senderID: String, receiverID: String) {
