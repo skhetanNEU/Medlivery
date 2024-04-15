@@ -42,12 +42,14 @@ class SupportView: UIView {
     //MARK: the bottom add contact view....
     func setupBottomAddView(){
         bottomAddView = UIView()
-        bottomAddView.backgroundColor = .white
+        bottomAddView.backgroundColor = Utilities.beigeColor // Light gray background
         bottomAddView.layer.cornerRadius = 6
-        bottomAddView.layer.shadowColor = UIColor.lightGray.cgColor
+        bottomAddView.layer.shadowColor = UIColor.black.cgColor // Darker shadow color
         bottomAddView.layer.shadowOffset = .zero
         bottomAddView.layer.shadowRadius = 4.0
         bottomAddView.layer.shadowOpacity = 0.7
+        bottomAddView.layer.borderWidth = 1.0 // Add border
+        bottomAddView.layer.borderColor = UIColor.darkGray.cgColor // Darker border color
         bottomAddView.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(bottomAddView)
     }
@@ -55,6 +57,7 @@ class SupportView: UIView {
     func setupTextFieldMessage(){
         textFieldMessage = UITextField()
         textFieldMessage.placeholder = "Type a message"
+        textFieldMessage.backgroundColor = Utilities.beigeColor
         textFieldMessage.borderStyle = .roundedRect
         textFieldMessage.translatesAutoresizingMaskIntoConstraints = false
         bottomAddView.addSubview(textFieldMessage)

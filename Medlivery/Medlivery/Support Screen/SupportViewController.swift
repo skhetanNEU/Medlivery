@@ -21,19 +21,41 @@ class SupportViewController: UIViewController {
 
     override func loadView() {
         view = messageScreen
+        setupKeyboardHiding()
+    }
+    
+    func setupKeyboardHiding(){
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     func getBotResponse(message: String) -> String {
         let tempMessage = message.lowercased()
+        let containsNumber = tempMessage.rangeOfCharacter(from: .decimalDigits) != nil
         print("Bot will talk")
+
         if tempMessage.contains("hello") {
             return "Hey there!"
-        } else if tempMessage.contains("goodbye") {
+        } else if tempMessage.contains("hi") {
+            return "Hi! How can I assist you today?"
+        } else if tempMessage.contains("goodbye") || tempMessage.contains("bye") {
             return "Talk to you later!"
         } else if tempMessage.contains("how are you") {
             return "I'm fine, how about you?"
-        } else {
-            return "Sure, will help you right away"
+        } else if tempMessage.contains("thanks") || tempMessage.contains("thank you") {
+            return "You're welcome!"
+        } else if tempMessage.contains("order") || tempMessage.contains("order status"){
+            return "Let me check that for you. Please provide your order number."
+        } else if tempMessage.contains("delivery") || tempMessage.contains("delivery time") || tempMessage.contains("delivery status") {
+            return "Delivery times vary based on location and current workload. Can you provide your order number for more details?"
+        } else if tempMessage.contains("product") || tempMessage.contains("item") || tempMessage.contains("catalog") {
+            return "Sure, if there's an issue with the product, please send me the order number so I can process it."
+        } else if containsNumber {
+            return "Thank you providing me with an order number. We will process the same and provide you with an update shortly"
+        }else if tempMessage.contains("update") {
+            return "It seems like your order is still being processed. We at Medlivery, appreciate your patience :) Can I assist you with something else in the meantime?"
+        }else {
+            return "I'm sorry, I didn't understand. How can I assist you?"
         }
     }
 
@@ -54,6 +76,14 @@ class SupportViewController: UIViewController {
             self.chatID = "\(senderID)_\(receiverID)"
             observeMessages()
         }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @objc func converse(){
@@ -210,17 +240,49 @@ extension SupportViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactCell", for: indexPath) as! SupportTableViewCell
         let message = messages[indexPath.row]
         cell.labelMessage.text = message.text
-        if message.senderID != "support@medlivery.com" {
+        cell.labelMessage.clipsToBounds = true
+        
+        // Update the cell to display sender's name and date/time
+        if message.senderID == senderID {
+            cell.labelSenderName.text = "You"
+        } else {
+            cell.labelSenderName.text = self.receiverID // Replace "Sender's Name" with the actual sender's name
+        }
+        let timestamp = message.timestamp
+        let date = timestamp.dateValue() // Convert Timestamp to Date
+
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM d, h:mm a"
+        cell.labelDateTime.text = dateFormatter.string(from: date)
+        
+        // Update cell appearance based on sender
+        if message.senderID == senderID {
             cell.updateLayoutForSenderID(true)
             cell.labelMessage.textAlignment = .right
+            cell.labelDateTime.textAlignment = .right
+            cell.labelSenderName.textAlignment = .right
             cell.labelMessage.backgroundColor = UIColor(red: 0.87, green: 0.96, blue: 0.87, alpha: 1.0)
         } else {
             cell.updateLayoutForSenderID(false)
             cell.labelMessage.textAlignment = .left
+            cell.labelDateTime.textAlignment = .left
+            cell.labelSenderName.textAlignment = .left
             cell.labelMessage.backgroundColor = UIColor(red: 0.8, green: 0.9, blue: 1.0, alpha: 1.0)
         }
         
         return cell
     }
     
+}
+
+extension SupportViewController {
+    @objc func keyboardWillShow(sender: NSNotification){
+        if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            self.view.frame.origin.y -= keyboardSize.height
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification){
+        self.view.frame.origin.y = 0
+    }
 }
