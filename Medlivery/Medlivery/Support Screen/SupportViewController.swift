@@ -277,8 +277,10 @@ extension SupportViewController: UITableViewDelegate, UITableViewDataSource{
 
 extension SupportViewController {
     @objc func keyboardWillShow(sender: NSNotification){
-        if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            self.view.frame.origin.y -= keyboardSize.height
+        if(self.view.frame.origin.y == 0){
+            if let keyboardSize = (sender.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                self.view.frame.origin.y -= keyboardSize.height
+            }
         }
     }
     
