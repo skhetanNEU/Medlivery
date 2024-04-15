@@ -9,6 +9,7 @@ import UIKit
 
 class LoginScreenView: UIView {
     
+    var contentWrapper:UIScrollView!
     var labelLoginRegister: UILabel!
     var textFieldEmail: UITextField!
     var textFieldPassword: UITextField!
@@ -20,6 +21,7 @@ class LoginScreenView: UIView {
         super.init(frame: frame)
         self.backgroundColor = .white
         
+        setupContentWrapper()
         setupLabelLoginRegister()
         setupTextFieldEmail()
         setupTextFieldPassword()
@@ -30,13 +32,19 @@ class LoginScreenView: UIView {
         initConstraints()
     }
     
+    func setupContentWrapper(){
+        contentWrapper = UIScrollView()
+        contentWrapper.translatesAutoresizingMaskIntoConstraints = false
+        self.addSubview(contentWrapper)
+    }
+    
     func setupLabelLoginRegister(){
         labelLoginRegister = UILabel()
         labelLoginRegister.text = "Medlivery"
         labelLoginRegister.font = UIFont.boldSystemFont(ofSize: 40)
         labelLoginRegister.textColor = .white
         labelLoginRegister.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(labelLoginRegister)
+        contentWrapper.addSubview(labelLoginRegister)
     }
     
     func setupTextFieldEmail(){
@@ -46,7 +54,7 @@ class LoginScreenView: UIView {
         textFieldEmail.autocapitalizationType = .none // Disable autocapitalization
         textFieldEmail.autocorrectionType = .no // Disable autocorrection
         textFieldEmail.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(textFieldEmail)
+        contentWrapper.addSubview(textFieldEmail)
     }
     
     func setupTextFieldPassword(){
@@ -55,7 +63,7 @@ class LoginScreenView: UIView {
         textFieldPassword.borderStyle = .roundedRect
         textFieldPassword.translatesAutoresizingMaskIntoConstraints = false
         textFieldPassword.isSecureTextEntry = true
-        self.addSubview(textFieldPassword)
+        contentWrapper.addSubview(textFieldPassword)
     }
     
     func setupButtonLogin(){
@@ -66,7 +74,7 @@ class LoginScreenView: UIView {
         buttonLogin.layer.cornerRadius = 4 // Adjust corner radius as needed
         buttonLogin.setTitleColor(.white, for: .normal)
         buttonLogin.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(buttonLogin)
+        contentWrapper.addSubview(buttonLogin)
     }
     
     func setupButtonRegister(){
@@ -77,7 +85,7 @@ class LoginScreenView: UIView {
         buttonRegister.layer.cornerRadius = 4 // Adjust corner radius as needed
         buttonRegister.setTitleColor(.white, for: .normal)
         buttonRegister.translatesAutoresizingMaskIntoConstraints = false
-        self.addSubview(buttonRegister)
+        contentWrapper.addSubview(buttonRegister)
     }
     
     func setupBackgroundImage(){
@@ -92,8 +100,13 @@ class LoginScreenView: UIView {
     func initConstraints(){
         NSLayoutConstraint.activate([
             
-            labelLoginRegister.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 140),
-            labelLoginRegister.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+            contentWrapper.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            contentWrapper.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+            contentWrapper.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+            contentWrapper.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+            
+            labelLoginRegister.topAnchor.constraint(equalTo: contentWrapper.topAnchor, constant: 140),
+            labelLoginRegister.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
             
             textFieldEmail.topAnchor.constraint(equalTo: labelLoginRegister.bottomAnchor, constant: 30),
             textFieldEmail.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 20),
@@ -109,7 +122,8 @@ class LoginScreenView: UIView {
             
             buttonRegister.topAnchor.constraint(equalTo: textFieldPassword.bottomAnchor, constant: 30),
             buttonRegister.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -60),
-            buttonRegister.widthAnchor.constraint(equalToConstant: 115)
+            buttonRegister.widthAnchor.constraint(equalToConstant: 115),
+            buttonRegister.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor)
         ])
     }
     

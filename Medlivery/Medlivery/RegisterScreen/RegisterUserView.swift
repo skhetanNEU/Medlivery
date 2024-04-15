@@ -19,8 +19,6 @@ class RegisterUserView: UIView {
     var textFieldPasswordRepeat: UITextField!
     var buttonRegister: UIButton!
     
-    
-    
     override init(frame: CGRect){
         super.init(frame: frame)
         
@@ -128,37 +126,35 @@ class RegisterUserView: UIView {
             contentWrapper.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
             contentWrapper.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
             contentWrapper.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            contentWrapper.widthAnchor.constraint(equalTo:self.safeAreaLayoutGuide.widthAnchor),
-            contentWrapper.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor),
+            contentWrapper.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
             
             textFieldName.topAnchor.constraint(equalTo: contentWrapper.topAnchor, constant: 80),
-            textFieldName.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
-            textFieldName.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
+            textFieldName.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            textFieldName.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             
             textFieldEmail.topAnchor.constraint(equalTo: textFieldName.bottomAnchor, constant: 20),
-            textFieldEmail.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
-            textFieldEmail.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
+            textFieldEmail.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            textFieldEmail.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             
             textFieldPhoneNumber.topAnchor.constraint(equalTo: textFieldEmail.bottomAnchor, constant: 20),
-            textFieldPhoneNumber.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
-            textFieldPhoneNumber.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
+            textFieldPhoneNumber.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            textFieldPhoneNumber.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             
             textFieldAddress.topAnchor.constraint(equalTo: textFieldPhoneNumber.bottomAnchor, constant: 20),
-            textFieldAddress.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
-            textFieldAddress.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
+            textFieldAddress.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            textFieldAddress.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             
             textFieldCity.topAnchor.constraint(equalTo: textFieldAddress.bottomAnchor, constant: 20),
-            textFieldCity.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
-            textFieldCity.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
+            textFieldCity.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            textFieldCity.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             
             textFieldPassword.topAnchor.constraint(equalTo: textFieldCity.bottomAnchor, constant: 20),
-            textFieldPassword.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
-            textFieldPassword.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
+            textFieldPassword.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            textFieldPassword.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             
             textFieldPasswordRepeat.topAnchor.constraint(equalTo: textFieldPassword.bottomAnchor, constant: 20),
-            textFieldPasswordRepeat.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 15),
-            textFieldPasswordRepeat.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -15),
-            
+            textFieldPasswordRepeat.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 15),
+            textFieldPasswordRepeat.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -15),
             
             buttonRegister.topAnchor.constraint(equalTo: textFieldPasswordRepeat.bottomAnchor, constant: 60),
             buttonRegister.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
