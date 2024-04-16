@@ -31,8 +31,6 @@ extension MapViewController: MKMapViewDelegate{
         
         guard let annotation = view.annotation as? Place else { return }
         
-        
-//        let createOrderController = CreateOrderController()
         createOrder.storeName = annotation.title
         createOrder.storeAddressLine1 = annotation.addressLine1
         createOrder.storeAddressLine2 = annotation.addressLine2
@@ -40,7 +38,6 @@ extension MapViewController: MKMapViewDelegate{
         createOrder.storeAddressState = annotation.state
         createOrder.storeAddressZip = annotation.zipcode
         createOrder.storeAddressCountry = annotation.country
-        
         createOrder.setPlaceName()
         self.navigationController?.popViewController(animated: true) }
 }

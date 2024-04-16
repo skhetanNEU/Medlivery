@@ -16,8 +16,6 @@ class CreateOrderView: UIView {
     var labelUploadPrescription: UILabel!
     var buttonUploadPrescription: UIButton!
     var buttonCreateOrder: UIButton!
-    // Boolean flag to track if an image is selected or not
-    
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -50,7 +48,6 @@ class CreateOrderView: UIView {
         labelLocation = UILabel()
         labelLocation.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         labelLocation.text = "Location"
-//        labelName.font = UIFont.boldSystemFont(ofSize: 16)
         labelLocation.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelLocation)
     }
@@ -76,7 +73,6 @@ class CreateOrderView: UIView {
         labelUploadPrescription = UILabel()
         labelUploadPrescription.font = UIFont.systemFont(ofSize: 22, weight: .bold)
         labelUploadPrescription.text = "Upload Prescription"
-//        labelUploadPrescription.font = UIFont.boldSystemFont(ofSize: 16)
         labelUploadPrescription.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelUploadPrescription)
     }
@@ -133,7 +129,6 @@ class CreateOrderView: UIView {
             navigationButton.leadingAnchor.constraint(equalTo: textFieldLocation.trailingAnchor, constant: 8),
             navigationButton.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -30),
             navigationButton.heightAnchor.constraint(equalTo: textFieldLocation.heightAnchor),
-//            navigationButton.widthAnchor.constraint(equalTo: navigationButton.heightAnchor),
             
             labelUploadPrescription.topAnchor.constraint(equalTo: textFieldLocation.bottomAnchor, constant: 24),
             labelUploadPrescription.leftAnchor.constraint(equalTo: contentWrapper.leftAnchor, constant: 30),
@@ -142,13 +137,6 @@ class CreateOrderView: UIView {
             buttonUploadPrescription.centerXAnchor.constraint(equalTo: contentWrapper.centerXAnchor),
             buttonUploadPrescription.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor),
             
-//            buttonUploadPrescription.widthAnchor.constraint(equalToConstant: 100),
-//            buttonUploadPrescription.heightAnchor.constraint(equalToConstant: 100),
-           
-//            buttonCreateOrder.leadingAnchor.constraint(equalTo: contentWrapper.leadingAnchor, constant: 12),
-//            buttonCreateOrder.trailingAnchor.constraint(equalTo: contentWrapper.trailingAnchor, constant: -12),
-//            buttonCreateOrder.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor, constant: -16),
-            
             buttonCreateOrder.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             buttonCreateOrder.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 12),
             buttonCreateOrder.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -12),
@@ -156,5 +144,4 @@ class CreateOrderView: UIView {
         ])
     }
     
-
 }

@@ -35,19 +35,9 @@ class MapViewController: UIViewController {
             self.navigationItem.leftBarButtonItem = backButton
         
         mapView.buttonCurrentLocation.addTarget(self, action: #selector(onButtonCurrentLocationTapped), for: .touchUpInside)
-                
         setupLocationManager()
-        
         onButtonCurrentLocationTapped()
         
-        
-       // let northeastern = Place(
-       //     title: "Northeastern University",
-       //     coordinate: CLLocationCoordinate2D(latitude: 42.339918, longitude: -71.089797),
-       //     info: "LVX VERITAS VIRTVS"
-       // )
-        
-       // mapView.mapView.addAnnotation(northeastern)
         mapView.mapView.delegate = self
         
     }
@@ -68,8 +58,6 @@ class MapViewController: UIViewController {
     }
     
     @objc func onButtonSearchTapped() {
-        print("on search button tapped called)")
-        
         let searchViewController = SearchViewController()
         searchViewController.delegateToMapView = self
         

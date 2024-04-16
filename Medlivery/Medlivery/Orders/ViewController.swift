@@ -84,10 +84,7 @@ class ViewController: UIViewController {
         
         ordersListView.tableViewOrders.delegate = self
         ordersListView.tableViewOrders.dataSource = self
-        
-        print("Printing in view did load")
         ordersListView.tableViewOrders.reloadData()
-        print("Printing in view did load after reload")
     }
     
     func addSupportContactForCurrentUser() {

@@ -37,26 +37,13 @@ class Utilities{
     }
     
     static func getTimeDifference(fromTimeString timeString: String) -> TimeInterval? {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "MM/dd/yy, HH:mm a"
-//        dateFormatter.timeZone = TimeZone(identifier: "UTC") // Set the timezone to Eastern Standard Time (EST)
-//        
-//        guard let storedDate = dateFormatter.date(from: timeString) else {
-//            return nil // Invalid time string format
-//        }
-//        
-//        let currentDate = Date()
-//        print(timeString)
-//        print(currentDate)
-//        print(storedDate)
-//        return currentDate.timeIntervalSince(storedDate)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yy, h:mm a" // Adjusted the date format to use 'h' for 12-hour format
         dateFormatter.timeZone = TimeZone(identifier: "EST") // Set to Eastern Standard Time
         
         guard let estDate = dateFormatter.date(from: timeString) else {
             print("Error: Failed to parse the time string.")
-            return nil // Return nil if parsing fails
+            return nil
         }
         
         // Check if the given date is within DST
@@ -70,12 +57,10 @@ class Utilities{
         dateFormatter.timeZone = TimeZone(identifier: "UTC")
         guard let utcDate = dateFormatter.date(from: utcDateString) else {
             print("Error: Failed to convert EST date to UTC.")
-            return nil // Return nil if conversion fails
+            return nil
         }
         
         if let currentDate = getCurrentDateInEST(){
-//            print(utcDate)
-//            print(currentDate)
             return currentDate.timeIntervalSince(utcDate)
         }
         return -1
@@ -84,8 +69,6 @@ class Utilities{
     static func getCurrentDateInEST() -> Date? {
         var calendar = Calendar.current
         calendar.timeZone = TimeZone(identifier: "EST")!
-        
-        // Get the current date and time
         return calendar.date(from: calendar.dateComponents([.year, .month, .day, .hour, .minute, .second], from: Date()))
     }
     

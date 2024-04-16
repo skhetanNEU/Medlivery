@@ -55,14 +55,6 @@ class CreateOrderController: UIViewController {
     
     func setPlaceName() {
         createOrderView.textFieldLocation.text = self.storeName
-        
-//        print(storeName)
-//        print(storeAddressLine1)
-//        print(storeAddressLine2)
-//        print(storeAddressCity)
-//        print(storeAddressState)
-//        print(storeAddressZip)
-//        print(storeAddressCountry)
     }
     
     func getMenuImagePicker() -> UIMenu{
@@ -127,9 +119,6 @@ class CreateOrderController: UIViewController {
         let individualOrder = IndividualOrder(name : orderString, location: location, image: pickedImage ?? (UIImage(systemName: "photo"))!)
         
         uploadProfilePhotoToStorage(individualOrder: individualOrder)
-//        delegate.delegateOnCreateOrder(individualOrder: individualOrder)
-           
-        
     }
     
     func addOrderToFireStore(individualOrder: IndividualOrder) {
@@ -137,14 +126,11 @@ class CreateOrderController: UIViewController {
             return
         }
         
-        
         let collectionOrders = database.collection("users").document(userEmail).collection("orders")
         let storeAddress = "\(self.storeAddressLine1 ?? "") \(self.storeAddressLine2 ?? "")"
         let storeCityState = "\(self.storeAddressCity ?? "") \(self.storeAddressState ?? "")"
-
         
         let uploadOrder = UploadOrder(storeName: self.storeName ?? "", storeAddress: storeAddress, storeCityState: storeCityState, zip: self.storeAddressZip ?? "", currentTime: individualOrder.currentTime, photoURL: self.storedProfilePhotoURL)
-        
         
         do {
             try collectionOrders.addDocument(from: uploadOrder) { error in
@@ -180,8 +166,6 @@ class CreateOrderController: UIViewController {
 extension CreateOrderController:PHPickerViewControllerDelegate{
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         dismiss(animated: true)
-        
-//        print(results)
         
         let itemprovider = results.map(\.itemProvider)
         
@@ -223,8 +207,6 @@ extension CreateOrderController: UINavigationControllerDelegate, UIImagePickerCo
             self.createOrderView.buttonUploadPrescription.widthAnchor.constraint(equalToConstant: 300).isActive = true
             self.createOrderView.buttonUploadPrescription.heightAnchor.constraint(equalToConstant: 400).isActive = true
             self.pickedImage = image
-        }else{
-            // Do your thing for No image loaded...
         }
     }
 }

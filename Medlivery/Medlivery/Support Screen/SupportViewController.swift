@@ -82,16 +82,13 @@ class SupportViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Customer Support"
-        //navigationController?.navigationBar.prefersLargeTitles = true
         messageScreen.tableViewContacts.dataSource = self
         messageScreen.tableViewContacts.delegate = self
         messageScreen.tableViewContacts.separatorStyle = .none
         messageScreen.tableViewContacts.backgroundColor = Utilities.beigeColor
 
-        // Set up send button action
         messageScreen.buttonSend.addTarget(self, action: #selector(converse), for: .touchUpInside)
 
-        // Fetch chat ID based on senderID and receiverID
         if let senderID = senderID, let receiverID = receiverID {
             self.chatID = "\(senderID)_\(receiverID)"
             observeMessages()
@@ -156,8 +153,6 @@ class SupportViewController: UIViewController {
     }
     
     @objc func botSendMessage(message: String, senderID: String, receiverID: String) {
-        print(message)
-        
         guard !message.isEmpty else {
             print("Invalid message")
             return
@@ -244,7 +239,6 @@ class SupportViewController: UIViewController {
                     self.messages.append(message)
                 }
             }
-//            print(self.messages)
             DispatchQueue.main.async {
                 self.messageScreen.tableViewContacts.reloadData()
             }

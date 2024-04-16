@@ -146,7 +146,6 @@ class RegisterUserViewController: UIViewController {
             }else{
                 //MARK: there is a error creating the user...
                 self.hideActivityIndicator()
-                print(error!)
                 self.showUserExistsAlert()
             }
         })
@@ -163,7 +162,6 @@ class RegisterUserViewController: UIViewController {
             }else{
                 //MARK: there was an error updating the profile...
                 self.hideActivityIndicator()
-                print("Error occured: \(String(describing: error))")
             }
         })
     }
@@ -230,16 +228,13 @@ class RegisterUserViewController: UIViewController {
     
     func showInvalidPhoneNumberAlert(){
         let alert = UIAlertController(title: "Error!", message: "Phone number is invalid!", preferredStyle: .alert)
-        
         alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
         self.present(alert, animated: true)
     }
     
     func showUserExistsAlert(){
         let alert = UIAlertController(title: "Error!", message: "User already exists", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        
+        alert.addAction(UIAlertAction(title: "OK", style: .default)) 
         self.present(alert, animated: true)
     }
 }

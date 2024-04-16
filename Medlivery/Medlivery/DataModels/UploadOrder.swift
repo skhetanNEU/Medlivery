@@ -11,7 +11,6 @@ import UIKit
 struct UploadOrder: Codable{
     
     @DocumentID var id: String?
-//    var location: String
     var storeName: String
     var storeAddress: String
     var storeCityState: String

@@ -36,9 +36,6 @@ class OrdersTableViewCell: UITableViewCell {
         wrapperCellView = UITableViewCell()
         wrapperCellView.layer.borderColor = UIColor.gray.cgColor
         wrapperCellView.layer.borderWidth = 2.0
-//        wrapperCellView.layer.cornerRadius = 130.0
-        
-        //working with the shadows and colors...
         wrapperCellView.backgroundColor = Utilities.beigeColor
         wrapperCellView.layer.cornerRadius = 12.0
         wrapperCellView.layer.shadowColor = UIColor.gray.cgColor
@@ -52,14 +49,12 @@ class OrdersTableViewCell: UITableViewCell {
     func setupLabelName(){
         labelName = UILabel()
         labelName.font = UIFont.systemFont(ofSize: 18, weight: .bold)
-//        labelName.font = UIFont.boldSystemFont(ofSize: 16)
         labelName.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(labelName)
     }
     
     func setupLabelDate(){
         labelDate = UILabel()
-//        labelDate.font = UIFont.boldSystemFont(ofSize: 8)
         labelDate.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(labelDate)
     }
@@ -68,21 +63,9 @@ class OrdersTableViewCell: UITableViewCell {
         lightView = UIImageView()
         lightView.image = UIImage(systemName: "truck.box.badge.clock.fill")
         lightView.tintColor = .black
-//        lightView.backgroundColor = .red // Change color as needed
-//        lightView.layer.cornerRadius = 5
         lightView.translatesAutoresizingMaskIntoConstraints = false
         wrapperCellView.addSubview(lightView)
     }
-    
-    
-//    func setupLabelEmail(){
-//        labelEmail = UILabel()
-//        labelEmail.translatesAutoresizingMaskIntoConstraints = false
-//        wrapperCellView.addSubview(labelEmail)
-//    }
-    
-
-
     
     func initConstraints(){
         NSLayoutConstraint.activate([
@@ -119,22 +102,11 @@ class OrdersTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func startBlinking() {
         UIView.animate(withDuration: 0.5, delay: 0, options: [.autoreverse, .repeat], animations: {
             self.lightView.alpha = self.lightView.alpha == 1 ? 0 : 1
-            //self.lightView.alpha = 0.5
         }, completion: nil)
     }
-    
-//    override func prepareForReuse() {
-//        super.prepareForReuse()
-//        lightView.layer.removeAllAnimations()
-//        print("Reusing cell")
-//        startBlinking()
-//    }
-
 }

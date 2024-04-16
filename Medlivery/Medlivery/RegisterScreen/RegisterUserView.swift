@@ -163,17 +163,6 @@ class RegisterUserView: UIView {
         ])
     }
     
-    func setBeigeBackgroundColor(alpha: CGFloat) {
-//        let red: CGFloat = 252.0/255.0
-//        let green: CGFloat = 218.0/255.0
-//        let blue: CGFloat = 195.0/255.0
-//        let alpha: CGFloat = 0.2 // Alpha value defines transparency, 1.0 means fully opaque
-//
-//        let backgroundColorCode = UIColor(red: red, green: green, blue: blue, alpha: alpha)
-//        self.backgroundColor = backgroundColorCode
-        
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

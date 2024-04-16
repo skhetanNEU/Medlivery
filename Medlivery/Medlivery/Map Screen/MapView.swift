@@ -40,13 +40,10 @@ class MapView: UIView {
         buttonLoading.layer.backgroundColor = UIColor.black.cgColor
         buttonLoading.tintColor = .white
         buttonLoading.layer.cornerRadius = 10
-        
         buttonLoading.layer.shadowOffset = .zero
         buttonLoading.layer.shadowRadius = 4
         buttonLoading.layer.shadowOpacity = 0.7
-        
         buttonLoading.translatesAutoresizingMaskIntoConstraints = false
-        
         buttonLoading.isEnabled = false
         self.addSubview(buttonLoading)
     }
@@ -57,13 +54,10 @@ class MapView: UIView {
         buttonCurrentLocation.layer.backgroundColor = UIColor.lightGray.cgColor
         buttonCurrentLocation.tintColor = .blue
         buttonCurrentLocation.layer.cornerRadius = 10
-        
         buttonCurrentLocation.layer.shadowOffset = .zero
         buttonCurrentLocation.layer.shadowRadius = 4
         buttonCurrentLocation.layer.shadowOpacity = 0.7
-        
         buttonCurrentLocation.translatesAutoresizingMaskIntoConstraints = false
-        
         self.addSubview(buttonCurrentLocation)
     }
     

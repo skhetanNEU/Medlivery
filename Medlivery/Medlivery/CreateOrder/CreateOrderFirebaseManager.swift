@@ -29,7 +29,6 @@ extension CreateOrderController{
                                 profilePhotoURL = url
                                 self.storedProfilePhotoURL = profilePhotoURL
                                 self.addOrderToFireStore(individualOrder: individualOrder)
-//                                self.registerUser(photoURL: profilePhotoURL)
                             }
                         })
                     }

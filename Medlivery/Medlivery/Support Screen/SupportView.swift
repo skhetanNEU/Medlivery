@@ -42,7 +42,7 @@ class SupportView: UIView {
     //MARK: the bottom add contact view....
     func setupBottomAddView(){
         bottomAddView = UIView()
-        bottomAddView.backgroundColor = Utilities.beigeColor // Light gray background
+        bottomAddView.backgroundColor = Utilities.beigeColor
         bottomAddView.layer.cornerRadius = 6
         bottomAddView.layer.shadowColor = UIColor.black.cgColor // Darker shadow color
         bottomAddView.layer.shadowOffset = .zero
@@ -73,7 +73,7 @@ class SupportView: UIView {
     
     func initConstraints(){
         NSLayoutConstraint.activate([
-            //bottom add view...
+            
             bottomAddView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor,constant: -8),
             bottomAddView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             bottomAddView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
@@ -87,17 +87,14 @@ class SupportView: UIView {
             textFieldMessage.trailingAnchor.constraint(equalTo: buttonSend.trailingAnchor, constant: -4),
             
             bottomAddView.topAnchor.constraint(equalTo: textFieldMessage.topAnchor, constant: -8),
-            //...
             
             tableViewContacts.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 32),
             tableViewContacts.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             tableViewContacts.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             tableViewContacts.bottomAnchor.constraint(equalTo: bottomAddView.topAnchor, constant: -8),
             
-            
         ])
     }
-    
     
     //MARK: initializing constraints...
     required init?(coder: NSCoder) {

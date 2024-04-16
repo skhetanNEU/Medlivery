@@ -8,13 +8,11 @@
 import UIKit
 
 class OrderDetailsView: UIView {
-//    var imageContact: UIImageView!
     var contentWrapper:UIScrollView!
     var labelName: UILabel!
     var labelEmail: UILabel!
     var labelPhone: UILabel!
     var labelStoreAddressTitle: UILabel!
-//    var location: UILabel!
     var storeName: UILabel!
     var storeAddress: UILabel!
     var storeCityState: UILabel!
@@ -74,7 +72,6 @@ class OrderDetailsView: UIView {
         labelEmail = UILabel()
         labelEmail.textAlignment = .left
         labelEmail.text = "john@gmail.com"
-//        labelEmail.font = UIFont.systemFont(ofSize: 24, weight: .bold)
         labelEmail.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelEmail)
     }
@@ -99,8 +96,6 @@ class OrderDetailsView: UIView {
     func setupStoreName(){
         storeName = UILabel()
         storeName.textAlignment = .left
-        
-//        storeName.text = "CVS, Brighton"
         storeName.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(storeName)
     }
@@ -108,8 +103,6 @@ class OrderDetailsView: UIView {
     func setupStoreAddress() {
         storeAddress = UILabel()
         storeAddress.textAlignment = .left
-        
-//        storeAddress.text = "CVS, Brighton"
         storeAddress.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(storeAddress)
         
@@ -118,8 +111,6 @@ class OrderDetailsView: UIView {
     func setupStoreCityState() {
         storeCityState = UILabel()
         storeCityState.textAlignment = .left
-        
-//        storeName.text = "CVS, Brighton"
         storeCityState.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(storeCityState)
         
@@ -128,8 +119,6 @@ class OrderDetailsView: UIView {
     func setupStoreZip() {
         storeZip = UILabel()
         storeZip.textAlignment = .left
-        
-//        storeName.text = "CVS, Brighton"
         storeZip.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(storeZip)
         
@@ -138,7 +127,6 @@ class OrderDetailsView: UIView {
     func setupDateOfOrder(){
         dateOfOrder = UILabel()
         dateOfOrder.textAlignment = .left
-        
         dateOfOrder.text = "05/22/2024 13:22"
         dateOfOrder.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(dateOfOrder)
@@ -158,7 +146,6 @@ class OrderDetailsView: UIView {
     func setupLabelAddress(){
         labelAddress = UILabel()
         labelAddress.textAlignment = .left
-        
         labelAddress.text = "75 St. Alphonsus Street"
         labelAddress.translatesAutoresizingMaskIntoConstraints = false
         contentWrapper.addSubview(labelAddress)
@@ -244,10 +231,7 @@ class OrderDetailsView: UIView {
             imagePrescription.heightAnchor.constraint(equalToConstant: 400),
             imagePrescription.widthAnchor.constraint(equalToConstant: 300),
             imagePrescription.bottomAnchor.constraint(equalTo: contentWrapper.bottomAnchor)
-                        
-
+            
         ])
     }
-    
-
 }
