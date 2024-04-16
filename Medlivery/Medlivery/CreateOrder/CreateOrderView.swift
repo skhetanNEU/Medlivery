@@ -11,7 +11,7 @@ class CreateOrderView: UIView {
     
     var contentWrapper:UIScrollView!
     var labelLocation: UILabel!
-    var textFieldLocation: UITextField!
+    var textFieldLocation: UILabel!
     var navigationButton: UIButton!
     var labelUploadPrescription: UILabel!
     var buttonUploadPrescription: UIButton!
@@ -56,9 +56,8 @@ class CreateOrderView: UIView {
     }
     
     func setupTextFieldLocation(){
-        textFieldLocation = UITextField()
-        textFieldLocation.placeholder = "Enter Pharmacy"
-        textFieldLocation.borderStyle = .roundedRect
+        textFieldLocation = UILabel()
+        textFieldLocation.text = "Select Location"
         textFieldLocation.translatesAutoresizingMaskIntoConstraints = false
         textFieldLocation.widthAnchor.constraint(equalToConstant: 320).isActive = true
         contentWrapper.addSubview(textFieldLocation)

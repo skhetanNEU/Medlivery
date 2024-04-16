@@ -108,6 +108,15 @@ class CreateOrderController: UIViewController {
                 return
         }
         
+        if(createOrderView.textFieldLocation.text == "Select Location"){
+            showAlert(title: "Location not selected", message: "You have to select a location to place an order")
+        }
+        
+        if(pickedImage == nil){
+            showAlert(title: "Prescription missing", message: "You have to upload a prescription to place an order")
+            return
+        }
+        
         let orderName = "Order"
         
         let orderString = "\(orderName)_\(self.orderNumber)"
