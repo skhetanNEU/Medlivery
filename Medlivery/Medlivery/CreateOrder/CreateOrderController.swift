@@ -102,6 +102,7 @@ class CreateOrderController: UIViewController {
         
         if(createOrderView.textFieldLocation.text == "Select Location"){
             showAlert(title: "Location not selected", message: "You have to select a location to place an order")
+            return
         }
         
         if(pickedImage == nil){
