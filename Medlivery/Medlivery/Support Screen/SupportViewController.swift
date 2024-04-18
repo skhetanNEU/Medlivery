@@ -53,7 +53,7 @@ class SupportViewController: UIViewController {
         } else if tempMessage.contains("product") || tempMessage.contains("item") || tempMessage.contains("catalog") {
             return "Sure, if there's an issue with the product, please send me the order number so I can process it."
         } else if tempMessage.contains("update") || tempMessage.contains("progress") {
-            return "Sure, let me check for updates on your request."
+            return "It seems like your order is still being processed. We at Medlivery, appreciate your patience :) Can I assist you with something else in the meantime?"
         } else if tempMessage.contains("return") || tempMessage.contains("exchange") {
             return "Certainly! Please provide your order number and reason for return/exchange."
         } else if tempMessage.contains("cancel") || tempMessage.contains("refund") {
@@ -70,9 +70,7 @@ class SupportViewController: UIViewController {
             return "To check product availability, please provide the product name or code."
         } else if tempMessage.contains("contact") || tempMessage.contains("support") {
             return "You can contact our support team at support@medlivery.com or call us at +1-800-123-4567."
-        } else if tempMessage.contains("update") {
-            return "It seems like your order is still being processed. We at Medlivery, appreciate your patience :) Can I assist you with something else in the meantime?"
-        }else if containsNumber {
+        } else if containsNumber {
             return "Thank you providing me with the order number. We will process the same and provide you with an update shortly."
         } else {
             return "I'm sorry, I didn't understand. How can I assist you?"
