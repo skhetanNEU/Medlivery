@@ -21,9 +21,11 @@ struct IndividualOrder {
         self.location = location
         self.image = image
         let formatter = DateFormatter()
+
         formatter.dateStyle = .short
         formatter.timeStyle = .short
-        self.currentTime = formatter.string(from: Date())
+        let currentDate = Date()
+        self.currentTime = formatter.string(from: currentDate)
     }
     
 }

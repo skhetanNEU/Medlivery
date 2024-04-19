@@ -208,7 +208,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         print(orders[indexPath.row].currentTime)
         if let timeDifference = Utilities.getTimeDifference(fromTimeString: orders[indexPath.row].currentTime) {
             print(timeDifference)
-            if (timeDifference < 16200){
+            if (timeDifference < 1800){
                 cell.lightView.image = UIImage(systemName: "truck.box.badge.clock.fill")
                 cell.lightView.tintColor = .black
                 cell.startBlinking()
